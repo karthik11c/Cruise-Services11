@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load User model
-const Dbase = require('../app');
-// var app = Dbase.app;
-// var app  = Dbase.app;
+const Db = require('../app');
+
+var regUsersDb = Db.regUsersDb;
+var cruiseDetailsDb = Db.cruiseDetailsDb;
 
 router.get('/homepage', (req, res) => res.render('homepage'));
 
@@ -19,9 +20,7 @@ router.get('/BookingDetails', (req, res) => res.render('booking-det'));
 
 var data;
 router.get('/index', function(req, res){
-  //const db = Dbase.dbListCruise;
- var db = Dbase.db;
- console.log('database connencted::'+db);
+ // console.log('database connencted::'+cruiseDetailsDb);
   var schema = {
     "selector": {
             "_id": {
@@ -30,14 +29,13 @@ router.get('/index', function(req, res){
     }
   }
 
-  db.find(schema,function(err,result){
+  cruiseDetailsDb.find(schema,function(err,result){
            if(err)
              throw err;
            else if((JSON.stringify(result.docs))!="[]"){
             }
              data = result.docs;
-             console.log('gm');
-             console.log(data);
+             console.log('data:'+JSON.stringify(data));
              res.render('index',{data: data});
       });
  });
@@ -45,8 +43,6 @@ router.get('/index', function(req, res){
 var data;
 
  router.post('/index',function(req, res){
-  // data = req.body;
-console.log('okoko');
  const { cruiseName, destination, dePort, date } = req.body;
  console.log('bodyCuirse:'+req.body.cruiseName);
   console.log('cruiseName:'+JSON.stringify(cruiseName));
@@ -58,10 +54,9 @@ console.log('okoko');
        'date': date
     }
    }
-   // const db = Dbase.dbListCruise;
 
-   db.find(schema,function(err,result){
-       if(err) console.log(err);else console.log('dadd:LLLL:::'+JSON.stringify(result.docs));
+   cruiseDetailsDb.find(schema,function(err,result){
+       if(err) console.log(err);else console.log('cruise-Info:'+JSON.stringify(result.docs));
       data = result.docs;
    });
 
@@ -107,13 +102,12 @@ router.post('/register', (req, res) => {
     });
   }
   else {
-    var db = Dbase.db;
     var schema   = {
                  "selector": {
                      "email": email
                   }
     }
-    db.find(schema,function(err,result){
+    cruiseDetailsDb.find(schema,function(err,result){
          if(err)
            throw err;
          else if((JSON.stringify(result.docs))!="[]"){
@@ -143,7 +137,7 @@ router.post('/register', (req, res) => {
              };
 
 
-             db.insert(newUser,function(err,result){
+             regUsersDb.insert(newUser,function(err,result){
              if(err){
               throw err;
              }else{
@@ -162,7 +156,7 @@ router.post('/register', (req, res) => {
     });
   }
 });
-// module.exports = { db : db};
+
 // Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {

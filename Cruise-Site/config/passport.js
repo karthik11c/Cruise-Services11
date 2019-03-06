@@ -1,18 +1,18 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-
 module.exports = function(passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       // Match user with email id
       const Db = require('../app');
-      var db = Db.db;
+      var regUsersDb = Db.regUsersDb;
       var schema   = {
                    "selector": {
                        "email": email
                     }
       }
-      db.find(schema,function(err,result){
+      var regUsersDb = Db.regUsersDb;
+      regUsersDb.find(schema,function(err,result){
          if(err)
            throw err;
          else if((JSON.stringify(result.docs))=="[]"){
@@ -36,7 +36,7 @@ module.exports = function(passport) {
                   schema = {
                     "selector": {"_id":_id}
                   }
-               db.find(schema, function(err, result) {
+                 regUsersDb.find(schema, function(err, result) {
                  done(err, result);
                });
              });

@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, issueToken ,verifyToken } = require('../config/auth');
-
 const Db = require('../app');
-var db = Db.db;
+
+
+//Databases
+var regUsersDb = Db.regUsersDb;
 var usersDb = Db.usersDb;
 var cruiseBookedUsersDb = Db.cruiseBookedUsersDb;
-// Welcome Page
+var cruiseDetailsdb = Db.cruiseDetailsdb;
 
-var secret = 'cruiseREST';
+
 //This is secrete which needs to be encripted In this case we are using this directly for demonstration only..
 //Dont do this in production..
+var secret = 'cruiseREST';
+
+// Welcome Page
+
 router.get('/', (req, res) => res.render('welcome'));
 
 // Dashboard
@@ -57,7 +63,7 @@ router.post('/loginget',function(req,res){
 });
 
 router.get('/findUserById',function(req,res){
-  //this endpoint is protected and can be used only by an admin others users are not allowed...
+//this endpoint is protected and can be used only by an admin others users are not allowed...
 //get req from swagger nodejs server and process the request...
 // var currentScopes = req.swagger.operation["x-security-scopes"];
 var token = JSON.stringify(req.headers.authorization);
@@ -72,9 +78,11 @@ var role = 'admin';
  }
   cruiseBookedUsersDb.find(schema,function(err,result){
     if(err){
+      console.log('Something went Wrong...');
       console.log('UserUD Not Found');
+    }else if((JSON.stringify(result.docs))=="[]"){
       res.send('User Not Found..');
-    }else{
+    }else {
       res.send(result.docs[0]);
     }
   });

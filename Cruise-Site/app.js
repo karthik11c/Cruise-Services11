@@ -13,39 +13,39 @@ const app = express();
 require('./config/passport')(passport);
 
 // DB Config
-var dbName = process.env.cruiseInfoDb|| 'cruise-details';
-var usersDb = process.env.usersDb;
-var cruiseBookedUsersDb = process.env.cruiseBookedUsersDb;
-    var cloudantUrl = 'http://'+keys.dbHost+':'+keys.dbPort;
-    console.log('cloudant-URL :'+cloudantUrl);
-
-    var nano = Cloudant({ url: cloudantUrl, plugins: 'promises' },function(err , cloudant , reply){
+var usersDb1 = process.env.usersDb;
+var regUsersDb1 = process.env.regUsersDb;
+var cruiseBookedUsersDb1 = process.env.cruiseBookedUsersDb;
+var cruiseDetailsDb1 = process.env.cruiseDetailsDb;
+//cloudant URL
+var cloudantUrl = 'http://'+keys.dbHost+':'+keys.dbPort;
+console.log('cloudant-URL :'+cloudantUrl);
+//Database Connection
+ var nano = Cloudant({ url: cloudantUrl, plugins: 'promises' },function(err , cloudant , reply){
     if(err) {console.log('Db Connection Failed....');}
     else{ console.log('Db Connected : ',reply);}
  });
-console.log('usersDb:'+usersDb);
-console.log('cruiseBookedUsersDb'+cruiseBookedUsersDb);
-usersDb = nano.use(usersDb);
-const db = nano.use(dbName);
-cruiseBookedUsersDb = nano.use(cruiseBookedUsersDb);
-//console.log('dbName:'+dbName);
-//
-// var db2 = process.env.dbListCruise||'cruise-finder';
-// const db = nano.use(dbName);
-// const dbListCruise = nano.use(db2);
-// console.log('db identified:'+db2);
+
+console.log('usersDb:'+usersDb1);
+console.log('regUsersDb:'+regUsersDb1);
+console.log('cruiseBookedUsersDb:'+cruiseBookedUsersDb1);
+console.log('cruiseDetailsDb:'+cruiseDetailsDb1);
+
+const usersDb = nano.use(usersDb1);
+const regUsersDb = nano.use(regUsersDb1);
+const cruiseBookedUsersDb = nano.use(cruiseBookedUsersDb1);
+const cruiseDetailsDb = nano.use(cruiseDetailsDb1);
 
 // EJS
-
 
 app.use('/assets', express.static(process.cwd() + '/assets'));
 app.set('view engine', 'ejs');
 
 module.exports = {
-   db:db,
    usersDb: usersDb,
-   cruiseBookedUsersDb:cruiseBookedUsersDb
-   // dbListCruise:dbListCruise
+   cruiseBookedUsersDb:cruiseBookedUsersDb,
+   regUsersDb:regUsersDb,
+   cruiseDetailsDb: cruiseDetailsDb
 };
 
 app.use(express.urlencoded({ extended: true }));
