@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="/assets/JS/jquery-1.12.4.js"></script>
+    <link href="/assets/css/font_style.css" rel="stylesheet" />
+    <!-- <script async="" src="https://www.google-analytics.com/analytics.js"></script> -->
+    <link href="/assets/css/footer.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+     <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/css/Animated.css" rel="stylesheet" />
+    <link href="/assets/css/all.css" rel="stylesheet" />
+    <script src="/assets/JS/modernizr-2.6.2.min.js"></script>
+    <link href="/assets/css/all.min.css" rel="stylesheet" />
+    <script src="/assets/JS/toggle.js"></script>
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/navbar.css" rel="stylesheet" />
+
+    </script>
+
+    <script src="/assets/JS/jquery.min.js"></script>
+
+  <style>
+      .cover {
+          background: linear-gradient(rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.1)), url(/assets/Images/344294.jpg) center;
+          background-size: cover;
+          min-height: 50rem;
+          height: 750px;
+          border-radius: 0;
+          width: 100%;
+          color: #fff;
+          padding-top: 1rem;
+      }
+
+      .fa-credit-card:before {
+          content: "\f09d";
+      }
+
+      .cover h1 {
+          font-weight: 200;
+      }
+
+      .cover p.lead {
+          margin: 2rem auto;
+          color: rgba(255, 255, 255, 0.75);
+      }
+
+      .cover .cover-container {
+          display: table;
+          height: 100%;
+          min-height: 44rem;
+          margin: 0 auto;
+      }
+
+      .atag:hover {
+          border: double 1px;
+          border-radius: 4px;
+          color: #777;
+      }
+
+      .atag {
+          font-size: 20px;
+          text-align: center;
+          color: black;
+          padding-left: 3px;
+      }
+
+      .trans {
+          /*background: rgba(51, 52, 55, 0.86);*/
+          background:#e1dddd;
+          color:rgb(39, 50, 56);
+          border:thick black;
+          border-color:black;
+      }
+
+      select.form-control:not([size]):not([multiple]) {
+          height: calc(2.25rem + 7px);
+      }
+
+      .collapsible {
+          background-color: #777;
+          color: white;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+      }
+
+          .active, .collapsible:hover {
+              background-color: #555;
+          }
+
+      .content {
+          padding: 0 18px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease-out;
+          background-color: #f1f1f1;
+      }
+
+      .footer {
+          background: rgb(39, 50, 56);
+      }
+
+      .mybtn {
+          background: #3085b8;
+          color: white;
+      }
+
+          .mybtn:hover {
+              background: #0f5a9e;
+              color: white;
+          }
+
+
+
+      .navbar.solid {
+          background-color: #490D40;
+          transition: background-color 1s ease 0s;
+          box-shadow: 0 0 4px grey;
+          color: #C57ED3;
+          transition: color 1s ease 0s;
+      }
+
+      .navbar-inverse {
+          color: #C57ED3;
+          transition: color 1s ease 0s;
+      }
+
+      .mynav {
+          background: white
+          /*rgba(113, 111, 111, 0.54);*/
+          ;
+          border: none;
+          box-shadow: #fff 10px 10px inset;
+          height: 80px;
+          position: fixed;
+          width: 100%;
+          opacity: 1;
+          z-index: 1;
+          top: 0;
+          left: 0;
+      }
+      body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #595959;
+    background: #fff; }
+
+      .mybox {
+          border-radius: 150px; text-align: center; height: 300px; background: #eeeeee; box-shadow: 0px 0px 60px 10px rgba(0,0,0,0.3);
+      }
+
+
+
+    </style>
+    <!-- <script>
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+         var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+    </script> -->
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function validate() {
+            var dest_result = document.getElementById('destination_result');
+
+            var departure = document.getElementById('departure_result');
+            var months = document.getElementById('result4');
+            var length = document.getElementById('result3');
+            var cruiseLine = document.getElementById('result1');
+            var infants = document.getElementById('infant');
+            var total = parseInt(adults.value) + parseInt(childs.value);
+            sessionStorage.setItem("totalNum", total);
+            var temp = sessionStorage.setItem("source", src.value);
+
+            sessionStorage.setItem("destination", dest.value);
+
+            sessionStorage.setItem("currentDate", cdate.value);
+            sessionStorage.setItem("Adults", adults.value);
+            sessionStorage.setItem("Childs", childs.value);
+            sessionStorage.setItem("Infants", infants.value);
+
+
+
+        }
+	</script>
+</head>
+<body Style="background:#f3f2f2;">
+
+    <section class="cover text-center">
+        <div class="col-lg-12">
+
+          <% include divs/navbar %>
+
+
+        </div>
+
+
+        <div class="cover-container pb-4 " style="padding-top: 50px;">
+            <div class="cover-inner container">
+            </div>
+
+            <div class="col-lg-3 curise_left_bar">
+                <div class="container-fluid center" style="background:rgba(251, 249, 249, 0.79); height: 500px; width: 400px; border-radius: 20px;color:black; ">
+                    <center>
+                        <h2>Find Your Route</h2>
+<form action="/users/index" method="POST" class="horizontal cover-container" style="padding-top:30px;">
+  <input type="hidden" id="parentDestination" value="">
+  <input type="hidden" value="All Departure Ports">
+  <input type="hidden" value="All Cruise Ships">
+  <div class="form-group">
+    <!--<label class="frm_capital_latter">DESTINATION:</label>-->
+    <select id="destination_result" name="destination_result" class="form-control trans" onchange="get_view_data(this.value, 'home');">
+      <option value="All Destination" selected disabled>Select Destination</option>
+
+      <% for(var i=0 ; i < data.length ; i++){ %>
+      <option > <%= data[i].destination %></option>
+      <%}%>
+
+    </select>
+  </div>
+  <div class="form-group">
+ <!-- Departure Port -->
+     <select id="departure_result" name="departure_result" class="form-control trans" onchange="get_view_data(this.value, 'home');">
+       <option value="" selected disabled>Select Departure Port</option>
+  <% for(var i=0 ; i < data.length ; i++){ %>
+  <option > <%= data[i].dep_port %></option>
+  <%}%>
+</select>
+
+</div>
+
+<!-- Departure Month  -->
+
+  <div class="form-group">
+   <select id="result4" name="result4" class="form-control trans" onchange="get_view_data(this.value, 'home');">
+      <option value="All Months" selected disabled>Select Month</option>
+      <% for(var i=0 ; i < data.length ; i++){ %>
+      <option > <%= data[i].date %></option>
+      <%}%>
+    </select>
+<!-- Departure Length     -->
+  </div>
+  <div class="form-group">
+    <select id="result3" name="result3" class="form-control trans" onchange="get_view_data(this.value, 'home');">
+      <option value="All Length" selected disabled>Select Length</option>
+      <% for(var i=0 ; i < data.length ; i++){ %>
+      <option > <%= data[i].length %></option>
+      <%}%>
+ </select>
+  </div>
+  <!-- Cruise Names -->
+  <div class="form-group">
+    <select id="result1" name="result1" class="form-control trans" onchange="get_view_data(this.value, 'home');">
+      <option value="All Cruise Lines" selected disabled>All Cruise Lines</option>
+      <% for(var i=0 ; i < data.length ; i++){ %>
+      <option > <%= data[i].cruise_name %></option>
+      <%}%>
+    </select>
+      </div>
+  <input type="hidden" value="" name="g_tot" id="g_tot">
+  <input type="hidden" value="" id="totnum">
+  <div class="form-group">
+    <label class="frm_capital_latter">SAILING: <img src="/sites/all/themes/intlvoyager/images/loading.gif" alt="loader" id="noCount" style="display: none;"> <span class="bold_price_tag" id="totalnumber"> 23,401</span> </label>
+  </div>
+  <div class="form-group text-center">
+    <input type="submit" class=" btn mybtn" id="searchbutton" value="SEARCH CRUISES">
+  </div>
+ </form>
+</center>
+                </div>
+            </div>
+            <!--<a style="scrollbar-arrow-color:ActiveBorder;font-size:20px;"> <i class="fa-arrow-down   aria-hidden="true"></i></a>-->
+        </div>
+
+    </section>
+
+
+
+    <!-- Start popular-destination Area -->
+			<section class="popular-destination-area section-gap" style="padding-top:10%;font-family: Arial, sans-serif">
+				<div class="container">
+		            <div class="row">
+		                <div class="col-lg-12">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Popular Destinations</h1>
+		                        <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day.</p>
+		                    </div>
+		                </div>
+		            </div>
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-destination relative" ">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="/assets/images/p4.jpg" alt="">
+								</div>
+								<div class="desc">
+									<a href="#" class="price-btn">$150</a>
+									<h4>Mountain River</h4>
+									<p>Paraguay</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destination relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="/assets/images/p2.jpg" alt="">
+								</div>
+								<div class="desc">
+									<a href="#" class="price-btn">$250</a>
+									<h4>Dream City</h4>
+									<p>Paris</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destination relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>
+									<img class="img-fluid" src="/assets/images/p3.jpg" alt="">
+								</div>
+								<div class="desc">
+									<a href="#" class="price-btn">$350</a>
+									<h4>Cloud Mountain</h4>
+									<p>Sri Lanka</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End popular-destination Area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+
+        <div class=" row" style="padding-top: 15%">
+
+            <div style="background-image: url(/assets/Images/cruise_img.jpg); width: 100%; height: 650px; top: 200px; bottom: 50px; z-index: 0;">
+
+                <div class="col-lg-8 col-lg-offset-2" style="background: #555; height: 600px; top: 0px; bottom: 50px; z-index: 0;">
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <div id="colorlib-services">
+			<div class="container" align="center">
+
+                <div class="container-fluid" style="text-align: center;height:400px; padding-top: 50px; font-size: 40px; >
+                    <h2>Why Book With us</h2>
+                    <hr style="width: 0%; color: #1982d8" />
+                </div>
+
+                 <h2>Why Book With us</h2>
+                    <hr style="width: 15%;padding-bottom:50px; color: #1982d8" />
+
+                <div class="row">
+                    <div class="col-md-3 animate-box text-center">
+                        <div class="services">
+                            <span class="icon" style="color: #1982d8">
+                                <i class="fas fa-5x fa-handshake"></i>
+                            </span>
+                            <h3>24/7 Service</h3>
+                            <p class="">You only need to pay a deposit when you book your trip in advance!</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box text-center">
+                        <div class="services">
+                            <span class="icon" style="color: #1982d8">
+                                <i class="fas fa-5x fa-piggy-bank"></i>
+
+                            </span>
+							<h3>No Booking Fees</h3>
+							<p>You only need to pay a deposit when you book your trip in advance!</p>
+						</div>
+					</div>
+					<div class="col-md-3 animate-box text-center">
+						<div class="services">
+							<span class="icon" style="color:#1982d8">
+                                <i class="fas fa-5x fa-lock"></i>
+							</span>
+							<h3>Best Price Gurantee</h3>
+							<p> We’re giving you the lowest rate possible – and we guarantee it!</p>
+						</div>
+					</div>
+					<div class="col-md-3 animate-box text-center">
+						<div class="services" >
+							<span class="icon" style="color:#1982d8">
+                                <i class="far fa-5x fa-money-bill-alt"></i>
+							</span>
+							<h3> Flexible Payment</h3>
+							<p>You only need to pay a deposit when you book your trip in advance!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+    <!--footer area-->
+
+
+    <footer class="footer" >
+        <div class="container bottom_border">
+            <div class="row">
+                <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+                    <!--headin5_amrc-->
+                    <p class="mb10">containerzation and docker tool technology</p>
+                    <p><i class="fa fa-location-arrow"></i>solapur ,india </p>
+                    <p><i class="fa fa-phone"></i>+91-9999878398  </p>
+                    <p><i class="fa fa fa-envelope"></i>info@example.com  </p>
+
+
+                </div>
+
+
+                <div class=" col-sm-4 col-md  col-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li><a href="">Image Rectoucing</a>
+                            <li><a href="">Image Cropping</a></li>
+                    </ul>
+                    <!--footer_ul_amrc ends here-->
+                </div>
+
+
+
+                <div class=" col-sm-4 col-md  col-12 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+                    <!--headin5_amrc ends here-->
+                    <a href="https://www.facebook.com"><i id="social-fb" class="fab fa-2x fa-facebook-square"></i></a>
+                    <a href="https://twitter.com"><i id="social-tw" class="fab fa-2x fa-twitter"></i></a>
+                    <a href="https://plus.google.com"><i id="social-g" class="fab fa-2x fa-google-plus-g"></i></a>
+                    <a href=""><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+                    <!-- Social buttons -->
+
+
+                    <!--footer_ul2_amrc ends here-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <ul class="foote_bottom_ul_amrc">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Register</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="text-center">Copyright @2018 | Designed With by <a href="#">Abc</a></p>
+
+            <!--social_footer_ul ends here-->
+        </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+
+</html>
