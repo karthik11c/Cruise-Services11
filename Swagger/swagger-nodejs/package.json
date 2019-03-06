@@ -1,0 +1,25 @@
+{
+  "name": "Swagger-NodeJS-Project",
+  "version": "2.0.0",
+  "description": "Cruise-Booking App With Swagger-UI",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -L /appDir/src/app.js"
+  },
+  "keywords": [],
+  "author": "Karthik",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudant/cloudant": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "swagger-express-mw": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
