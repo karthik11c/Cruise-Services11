@@ -18,6 +18,13 @@ router.get('/register', (req, res) => res.render('register'));
 
 router.get('/BookingDetails', (req, res) => res.render('booking-det'));
 
+router.get('/about', (req, res) => res.render('AboutCruise'));
+router.get('/contact', (req, res) => res.render('contact'));
+
+router.get('/dining', (req, res) => res.render('dining'));
+router.get('/avail-cruise', (req, res) => res.render('AvailableCruise'));
+
+
 var data;
 router.get('/index', function(req, res){
  // console.log('database connencted::'+cruiseDetailsDb);
