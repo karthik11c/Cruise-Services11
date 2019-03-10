@@ -91,10 +91,33 @@ var role = 'admin';
 }
 });
 
+  router.get('/findUserByName',function(req,res){
+  //this endpoint is protected and can be used only by an admin others users are not allowed...
+  //get req from swagger nodejs server and process the request...
+  // var currentScopes = req.swagger.operation["x-security-scopes"];
+  var token = JSON.stringify(req.headers.authorization);
+  console.log('token:'+token);
+  var isProtectedResource = true;
+  var role = 'admin';
+   if(isProtectedResource == true && verifyToken(role,token) == true){
+   var schema = {
+     'selector':{
+       'name': req.query.name  //match name
+     }
+   }
+    cruiseBookedUsersDb.find(schema,function(err,result){
+      if(err){
+        console.log('Something went Wrong...');
+        console.log('UserName Not Found');
+      }else if((JSON.stringify(result.docs))=="[]"){
+        res.send('User Not Found.. Please Enter Valid User...');
+      }else {
+        res.send(result.docs[0]);
+      }
+    });
+  }else {
+    res.send({'message':'accessToken verification failed...'});
+  }
+  });
+
 module.exports = router;
-// router.get('/findUserById',function(req,res){
-//
-//
-//
-// res.send('ok');
-// });

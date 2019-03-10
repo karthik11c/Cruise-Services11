@@ -34,6 +34,9 @@ paths:
       description: Returns 'Add User' to the Database
       # used as the method name of the controller
       operationId: login
+      tags:
+       - User-Info
+
       parameters:
         - name: client_id
           required: true
@@ -57,6 +60,8 @@ paths:
       description: Returns User Info by Id
       # used as the method name of the controller
       operationId: findUserById
+      tags:
+       - User-Info
       parameters:
         - name: uid
           in: query
@@ -85,12 +90,18 @@ paths:
       description: Returns User Info by Id
       # used as the method name of the controller
       operationId: findUserByName
+      tags:
+       - User-Info
       parameters:
         - name: Name
           in: query
           description: Enter User Name
           required: true
           type: string
+      security:
+        - BearerAuth: []
+      x-security-scopes:
+        - admin
       responses:
         "200":
           description: Success
@@ -101,68 +112,17 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /UpdateUserInfoByName:
-       # binds a127 app logic to a route
-    x-swagger-router-controller: crud
-    post:
-      consumes:
-        - application/json
-      description: Returns User Info by Id
-      # used as the method name of the controller
-      operationId: UpdateUserInfoByName1
-      parameters:
-        - name: customer
-          required: true
-          in: body
-          description: Enter User Details with Old name also
-          schema:
-            $ref: '#/definitions/UpdateUserInfoByName'
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/UpdateUserInfoByName"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /UpdateUserInfoById:
-       # binds a127 app logic to a route
-    x-swagger-router-controller: crud
-    post:
-      consumes:
-        - application/json
-      description: Returns User Info by Id
-      # used as the method name of the controller
-      operationId: UpdateUserInfoById
-      parameters:
-        - name: customer
-          required: true
-          in: body
-          description: Enter User Details with Old name also
-          schema:
-            $ref: '#/definitions/UpdateUserInfoById'
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/UpdateUserInfoById"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-
   /DeleteUserInfoById:
        # binds a127 app logic to a route
     x-swagger-router-controller: crud
-    get:
+    delete:
       consumes:
         - application/json
       description: Returns User Info by Id
       # used as the method name of the controller
       operationId: DeleteUserInfoById
+      tags:
+       - User-Info
       parameters:
         - name: Id
           required: true
@@ -174,6 +134,8 @@ paths:
           in: query
           description: Enter Rev No
           type: string
+      security:
+        - BearerAuth: []
       responses:
         "200":
           description: Success
@@ -187,18 +149,22 @@ paths:
   /DeleteUserInfoByName:
        # binds a127 app logic to a route
     x-swagger-router-controller: crud
-    post:
+    delete:
       consumes:
         - application/json
       description: Deletes User Info by Name
       # used as the method name of the controller
       operationId: DeleteUserInfoByName
+      tags:
+       - User-Info
       parameters:
         - name: name
           required: true
           in: query
           description: Enter User name
           type: string
+      security:
+        - BearerAuth: []
       responses:
         "200":
           description: Success
@@ -216,6 +182,12 @@ paths:
       description: Returns All Users to Body...
       # used as the method name of the controller
       operationId: getAllUsersInfo
+      tags:
+       - User-Info
+      security:
+        - BearerAuth: []
+      x-security-scopes:
+        - admin
       responses:
         "200":
           description: Success
@@ -226,12 +198,426 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /getRegisteredUsersOnly:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById23
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - User-Info
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
 
+
+  /findCruiseByName:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: findCruiseByName
+      tags:
+       - Cruise-Info
+      parameters:
+        - name: Name
+          in: query
+          description: Enter Cruise Name
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/getUserInfoByName"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /addNewCruise:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    post:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: addNewCruise
+      tags:
+        - Cruise-Info
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /UpdateCruiseInfoByName:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    put:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoByName1
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoByName'
+      tags:
+        - Cruise-Info
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoByName"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /DeleteCruiseInfoByName:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    delete:
+      consumes:
+        - application/json
+      description: Deletes User Info by Name
+      # used as the method name of the controller
+      operationId: DeleteUserInfoByName1
+      tags:
+       - Cruise-Info
+      parameters:
+        - name: name
+          required: true
+          in: query
+          description: Enter User name
+          type: string
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/DeleteUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /findCruiseByDestinations:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: findCruiseByName1
+      tags:
+       - Cruise-Info
+      parameters:
+        - name: Name
+          in: query
+          description: Enter Cruise Name
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/getUserInfoByName"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /findAllCruises:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: findCruiseByName2
+      tags:
+       - Cruise-Info
+      parameters:
+        - name: Name
+          in: query
+          description: Enter Cruise Name
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/getUserInfoByName"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /findHotelsByCruiseName:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: findCruiseByName3
+      tags:
+       - Hotel-Services
+      parameters:
+        - name: Name
+          in: query
+          description: Enter Cruise Name
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/getUserInfoByName"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /PlaceOrderForFood:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    post:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById2
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Hotel-Services
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+#  /Hotel/Items/{orderId}:
+  /FindPurchaseByOrderId:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    post:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById22
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Hotel-Services
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /CancelOrderForFood:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    delete:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById232
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Hotel-Services
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /getUsersFeedback:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById2322
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Feedback
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /getUsersComplaints:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoBy
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Feedback
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /getUsersReviewsandRatings:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    get:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById2323
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Feedback
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /addCruiseReviewOrComplaint:
+       # binds a127 app logic to a route
+    x-swagger-router-controller: crud
+    post:
+      consumes:
+        - application/json
+      description: Returns User Info by Id
+      # used as the method name of the controller
+      operationId: UpdateUserInfoById23323
+      parameters:
+        - name: customer
+          required: true
+          in: body
+          description: Enter User Details with Old name also
+          schema:
+            $ref: '#/definitions/UpdateUserInfoById'
+      tags:
+        - Feedback
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateUserInfoById"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
 
 
   /swagger:
     x-swagger-pipe: swagger_raw
-
 
 # complex objects have schema definitions
 definitions:

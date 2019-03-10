@@ -152,19 +152,46 @@ function findUserById(req,res){
 
 //3.findUserByName
 
+
 function findUserByName(req,res){
-       var name = req.swagger.params.Name.value;
-       schema  = {
-                       "selector" : {
-                           "name" : name
-                        }
-       }
-       db.find(schema,function(err,result){
-            if(err)
-              throw err;
-              console.log(result.docs);
-       res.send(result.docs).end();
-       });
+  var name = req.swagger.params.name.value;
+  var accessToken = JSON.stringify(req.headers.api_key);
+  console.log('UID:'+uid+'\naccessToken:'+accessToken);
+  var options = {
+    host: 'uinodejs',
+    port: 10010,
+    path: '/findUserById?name='+name,
+    method: 'GET',
+    headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+accessToken
+     }
+  };
+
+  var httpreq = http.request(options, function (response) {
+      // response.setEncoding('utf8');
+      var result='';
+      response.on('data', function (chunk) {
+        result += chunk;
+      });
+      // console.log('result::'+result);
+      response.on('end', function() {
+         console.log('2.result:'+response);
+         console.log('3.result::+'+result);
+         console.log('4.headers:'+response.headers);
+         console.log('5.statuscode:'+response.statusCode);
+         if(response.statusCode == 403)
+          var message = "Error: Credentials incorrect";
+         else
+           var message = result;
+         res.send(message);
+      });
+  });
+ httpreq.on('error', (e) => {
+   console.error(`problem with request...`);
+ });
+ // httpreq.write(data);
+ httpreq.end();
 };
 
 //4.UpdateUserInfoByName
