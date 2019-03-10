@@ -257,17 +257,21 @@
      <script>
 
          function validation() {
-            console.log('okokko');
              var src = document.getElementById('departure_result');
              var dest = document.getElementById('destination_result');
              var cdate = document.getElementById('Cdate');
              var nPerson = document.getElementById('numP');
              var length = document.getElementById('length');
-             var data = { 'src':src, 'dest':dest,'cdate':cdate, 'length': length,'nPerson': nPerson };
-             // var infants = document.getElementById('infant');
-             //var total = parseInt(adults.value) + parseInt(childs.value);
-             document.getElementById("ok").innerHTML = length;
+             var data = { 'src': src.value, 'dest': dest.value,'cdate':cdate.value, 'length': length.value,'nPerson': nPerson.value };
+            // var infants = document.getElementById('infant');
+            //var total = parseInt(adults.value) + parseInt(childs.value);
+            $.ajax({
+                     type: "POST",
+                     data: JSON.stringify(data),
+                     url: "/users/avail-cruise",
+                     contentType: 'application/x-www-form-urlencoded' //see that
 
+            });
              sessionStorage.setItem("total", nPerson.value);
              var temp = sessionStorage.setItem("source", src.value);
 
@@ -276,33 +280,8 @@
              sessionStorage.setItem("currentDate", cdate.value);
              sessionStorage.setItem("Adults", adults.value);
              sessionStorage.setItem("length", length.value);
-             // sessionStorage.setItem("Infants", infants.value);
 
-alert("hello");
-loction.href="/users/avail-cruise";
-             loction.replace("/users/avail-cruise");
-
-             if (numP.value == "" ) {
-                 document.getElementById('err').innerHTML = " Please fill detail ";
-              }
-             // } else {
-             //
-             // }
-
-             //send ajax post request to node server with formdata...
-
-             $.ajax({
-                        url: '/users/avail-cruise',
-                        data: JSON.stringify(data),
-                        type: 'POST',
-                        contentType: 'application/json', // this is not relevant to the POST anymore
-                        success: function (data) {
-                            console.log('Success: '+JSON.stringify(data));
-                        },
-                        error: function (xhr, status, error) {
-                            console.log('Error: ' + error.message);
-                        }
-             });//#ajax
+              //send ajax post request to node server with formdata...
 
            }//#validation
 
@@ -314,9 +293,6 @@ loction.href="/users/avail-cruise";
 
              var preld = document.getElementById('loading');
              preld.style.display = 'none';
-
-
-
 
          }
 
