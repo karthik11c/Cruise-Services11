@@ -22,9 +22,11 @@ router.get('/about', (req, res) => res.render('AboutCruise'));
 router.get('/contact', (req, res) => res.render('contact'));
 
 router.get('/dining', (req, res) => res.render('dining'));
-router.get('/avail-cruise', (req, res) => res.render('AvailableCruise'));
-
-
+router.post('/avail-cruise', function(req, res){
+   console.log('Post request');
+  console.log('data from index: '+JSON.stringify(req.body));
+  res.render('AvailableCruise');
+});
 var data;
 router.get('/index', function(req, res){
  // console.log('database connencted::'+cruiseDetailsDb);
@@ -42,7 +44,7 @@ router.get('/index', function(req, res){
            else if((JSON.stringify(result.docs))!="[]"){
             }
              data = result.docs;
-             console.log('data:'+JSON.stringify(data));
+             // console.log('data:'+JSON.stringify(data));
              res.render('index',{data: data});
       });
  });
