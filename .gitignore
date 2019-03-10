@@ -34,8 +34,14 @@ build/Release
 
 # Dependency directories
 node_modules/
-jspm_packages/
 Images/
+jspm_packages/
+<<<<<<< HEAD
+Images/
+=======
+package-lock.json
+
+>>>>>>> 74d26bc419968de652e459a7e553523791137e2f
 # TypeScript v1 declaration files
 typings/
 

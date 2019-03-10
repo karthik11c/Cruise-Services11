@@ -18,6 +18,7 @@
     <script src="/assets/JS/Custom.js"></script>
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="/assets/css/navbar.css" rel="stylesheet"/>
+    <!-- <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script> -->
 
 
     <style>
@@ -255,17 +256,17 @@
      </style>
      <script>
 
-
          function validation() {
-
              var src = document.getElementById('departure_result');
-
              var dest = document.getElementById('destination_result');
              var cdate = document.getElementById('Cdate');
              var nPerson = document.getElementById('numP');
              var length = document.getElementById('length');
-             var infants = document.getElementById('infant');
+             var data = { 'src':src, 'dest':dest,'cdate':cdate, 'length': length,'nPerson': nPerson };
+             // var infants = document.getElementById('infant');
              //var total = parseInt(adults.value) + parseInt(childs.value);
+             document.getElementById("ok").innerHTML = length;
+
              sessionStorage.setItem("total", nPerson.value);
              var temp = sessionStorage.setItem("source", src.value);
 
@@ -274,7 +275,7 @@
              sessionStorage.setItem("currentDate", cdate.value);
              sessionStorage.setItem("Adults", adults.value);
              sessionStorage.setItem("length", length.value);
-             sessionStorage.setItem("Infants", infants.value);
+             // sessionStorage.setItem("Infants", infants.value);
 
 alert("hello");
 loction.href="/users/avail-cruise";
@@ -282,18 +283,33 @@ loction.href="/users/avail-cruise";
 
              if (numP.value == "" ) {
                  document.getElementById('err').innerHTML = " Please fill detail ";
+              }
+             // } else {
+             //
+             // }
 
-             } else {
-             }
+             //send ajax post request to node server with formdata...
 
-         }
+             $.ajax({
+                        url: '/users/avail-cruise',
+                        data: JSON.stringify(data),
+                        type: 'POST',
+                        contentType: 'application/json', // this is not relevant to the POST anymore
+                        success: function (data) {
+                            console.log('Success: '+JSON.stringify(data));
+                        },
+                        error: function (xhr, status, error) {
+                            console.log('Error: ' + error.message);
+                        }
+             });//#ajax
+
+           }//#validation
 
      </script>
 
      <script>
 
          function preload() {
-
 
              var preld = document.getElementById('loading');
              preld.style.display = 'none';
@@ -348,7 +364,8 @@ loction.href="/users/avail-cruise";
                  <div class="container-fluid center fontstyle" style="background: rgba(251, 249, 249, 0.79); height: 500px; width: 400px; border-radius: 20px; color: black;">
                      <center>
                          <h2 >Find Your Route</h2>
-               <form class="horizontal cover-container" action="/users/index" method="post" style="padding-top:30px;">
+                         <!-- action="/users/avail-cruise" method="post" -->
+               <form class="horizontal cover-container"  style="padding-top:30px;">
                        <div class="form-group">
 
           <!-- ########## All Destinations ######### -->
@@ -406,7 +423,10 @@ loction.href="/users/avail-cruise";
                    			<span style="background:red;color:white;" id="err"></span>
                    <div class="form-group text-center">
 
-                       <a href="/users/avail-cruise"   class=" btn mybtn" onclick="validation()">SEARCH CRUISES</a>
+                       <button class="btn mybtn" onclick="validation()">SEARCH CRUISES </button>
+                   </div>
+                   <div id="ok">
+
                    </div>
          </form>
  </center>

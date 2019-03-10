@@ -40,6 +40,6 @@ services:
    depends_on:
      - uinodejs
    volumes:
-     - ./Swagger/swagger-nodejs:/appDir/src
+     - ./Swagger/swagger-nodejs:/appDir
 volumes:
  cloudant-data:

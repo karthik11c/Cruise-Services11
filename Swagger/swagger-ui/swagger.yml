@@ -82,7 +82,8 @@ paths:
        # binds a127 app logic to a route
     x-swagger-router-controller: crud
     get:
-      description: Returns User Info by Id
+      summary: Returns User Info by UserName
+      description: Returns User Info by Name
       # used as the method name of the controller
       operationId: findUserByName
       parameters:
@@ -96,7 +97,6 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/getUserInfoByName"
-        # responses may fall through to errors
         default:
           description: Error
           schema:
