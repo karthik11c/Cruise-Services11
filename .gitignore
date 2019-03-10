@@ -34,10 +34,10 @@ build/Release
 
 # Dependency directories
 node_modules/
-Images/
+#Images/
 jspm_packages/
 <<<<<<< HEAD
-Images/
+#Images/
 =======
 package-lock.json
 

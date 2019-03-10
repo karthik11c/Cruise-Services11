@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var bodyParser = require('body-parser');
 // Load User model
 const Db = require('../app');
 
@@ -10,6 +11,11 @@ var cruiseDetailsDb = Db.cruiseDetailsDb;
 
 router.get('/homepage', (req, res) => res.render('homepage'));
 
+router.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+router.use(bodyParser.json());
 // Login Page
 
 router.get('/login', (req, res) => res.render('login'));
@@ -20,22 +26,32 @@ router.get('/BookingDetails', (req, res) => res.render('booking-det'));
 
 router.get('/about', (req, res) => res.render('AboutCruise'));
 router.get('/contact', (req, res) => res.render('contact'));
-
 router.get('/dining', (req, res) => res.render('dining'));
 
 var data;
 router.post('/avail-cruise', function(req, res){
-   console.log('data from index: '+JSON.stringify(req.body));
-   data = req.body;
-   res.redirect('/users/ind');
+   console.log('data from index: '+(JSON.stringify(req.body)));
+   //find matching data from ui fields into db
+   //find data into db
+   var schema = {
+     "selector": {
+             "_id": {
+                 "$gt": null          //data.cruiseName || data.destination || ... query
+             }
+     }
+   }
+   cruiseDetailsDb.find(schema,function(err,result){
+            if(err)
+              throw err;
+            else if((JSON.stringify(result.docs))!="[]"){
+             }
+              data = result.docs;
+              // console.log('data:'+JSON.stringify(data));
+              console.log('indexdata: '+JSON.stringify(data));
+              res.render('AvailableCruise',{data:data});
+       });
 });
 
-router.get('/ind', (req, res) => res.render('dining'));
-
-
-// router.get('/avail-data',function(req, res){
-//  res.render('contact',{data:data});
-// });
 
 router.get('/index', function(req, res){
  // console.log('database connencted::'+cruiseDetailsDb);
@@ -54,6 +70,7 @@ router.get('/index', function(req, res){
             }
              data = result.docs;
              // console.log('data:'+JSON.stringify(data));
+             console.log('indexdata: '+JSON.stringify(result.docs));
              res.render('index',{data: data});
       });
  });
