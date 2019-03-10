@@ -3,7 +3,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const keys = require('./keys');
-
+var bodyParser = require('body-parser');
 var Cloudant = require('@cloudant/cloudant');
 var dotenv = require('dotenv').config({ path: './config/.env' });
 var path = require('path');
@@ -48,8 +48,11 @@ module.exports = {
    cruiseDetailsDb: cruiseDetailsDb
 };
 
-app.use(express.urlencoded({ extended: true }));
-
+// app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
+// app.use(bodyParser.json());
 // Express session
 app.use(
   session({

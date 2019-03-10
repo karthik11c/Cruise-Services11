@@ -263,25 +263,12 @@
              var nPerson = document.getElementById('numP');
              var length = document.getElementById('length');
              var data = { 'src': src.value, 'dest': dest.value,'cdate':cdate.value, 'length': length.value,'nPerson': nPerson.value };
-            // var infants = document.getElementById('infant');
-            //var total = parseInt(adults.value) + parseInt(childs.value);
-            $.ajax({
-                     type: "POST",
-                     data: JSON.stringify(data),
-                     url: "/users/avail-cruise",
-                     contentType: 'application/x-www-form-urlencoded' //see that
-
-            });
              sessionStorage.setItem("total", nPerson.value);
              var temp = sessionStorage.setItem("source", src.value);
-
              sessionStorage.setItem("destination", dest.value);
-
              sessionStorage.setItem("currentDate", cdate.value);
              sessionStorage.setItem("Adults", adults.value);
              sessionStorage.setItem("length", length.value);
-
-              //send ajax post request to node server with formdata...
 
            }//#validation
 
@@ -333,22 +320,19 @@
 
 
          <div class="cover-container pb-4" style="padding-top: 100px;">
-
-
-
-             <div class="row">
+    <div class="row">
              <div class="col-lg-3 curise_left_bar  col-lg-offset-1"">
                  <div class="container-fluid center fontstyle" style="background: rgba(251, 249, 249, 0.79); height: 500px; width: 400px; border-radius: 20px; color: black;">
                      <center>
                          <h2 >Find Your Route</h2>
                          <!-- action="/users/avail-cruise" method="post" -->
-               <form class="horizontal cover-container"  style="padding-top:30px;">
+               <form class="horizontal cover-container" action="/users/avail-cruise" method="POST" style="padding-top:30px;">
                        <div class="form-group">
 
           <!-- ########## All Destinations ######### -->
 
                          <!--<label class="frm_capital_latter">DESTINATION:</label>-->
-                         <select id="destination_result" class="form-control trans"  required>
+                         <select name="destination" id="destination_result" class="form-control trans"  required>
                            <option value="All Destination" selected disabled >Any Destination</option>
                            <% for(var i=0 ; i < data.length ; i++){ %>
                            <option > <%= data[i].destination %></option>
@@ -360,7 +344,7 @@
           <!-- ##### Any Departure Port ######  -->
 
      <!--<label class="frm_capital_latter">DEPARTURE PORT:</label>-->
-                             <select id="departure_result" class="form-control trans"  required>
+                             <select name="dePort" id="departure_result" class="form-control trans"  required>
                                <option value="All Departure" selected disabled>Select DeparturePort</option>
                                      <% for(var i=0 ; i < data.length ; i++){ %>
                                      <option > <%= data[i].dePort %></option>
@@ -371,12 +355,12 @@
    <!-- ##### DEPARTURE Month  -->
                          <div class="form-group">
                      <!--<label class="frm_capital_latter">DEPARTURE MONTH:</label>-->
-                         <input type="month" id="Cdate" class="form-control trans"  value="2019-03" />
+                         <input name="month" type="month" id="Cdate" class="form-control trans"  value="2019-03" />
                       </div>
 
     <!--###### Length #######  -->
                          <div class="form-group">
-                          <select id="length" class="form-control trans"  required>
+                          <select name="Length" id="length" class="form-control trans"  required>
                           <option value="All Departure" selected disabled>Select Length</option>
                                   <% for(var i=0 ; i < data.length ; i++){ %>
                                   <option > <%= data[i].Length %></option>
@@ -385,7 +369,7 @@
                          </div>
    <!-- ########## All Cruise Lines ######## -->
                   <div class="form-group">
-                     <select id="all_cruise" class="form-control trans" required>
+                     <select name="cruiseName"  id="all_cruise" class="form-control trans" required>
                        <option value="All Departure" selected disabled>Select Cruise</option>
                              <% for(var i=0 ; i < data.length ; i++){ %>
                              <option > <%= data[i].cruiseName %></option>
@@ -400,10 +384,7 @@
                    			<span style="background:red;color:white;" id="err"></span>
                    <div class="form-group text-center">
 
-                       <button class="btn mybtn" onclick="validation()">SEARCH CRUISES </button>
-                   </div>
-                   <div id="ok">
-
+                       <button type="submit" class="btn mybtn" onclick="validation()">SEARCH CRUISES </button>
                    </div>
          </form>
  </center>
