@@ -22,12 +22,21 @@ router.get('/about', (req, res) => res.render('AboutCruise'));
 router.get('/contact', (req, res) => res.render('contact'));
 
 router.get('/dining', (req, res) => res.render('dining'));
-router.post('/avail-cruise', function(req, res){
-   console.log('Post request');
-  console.log('data from index: '+JSON.stringify(req.body));
-  res.render('AvailableCruise');
-});
+
 var data;
+router.post('/avail-cruise', function(req, res){
+   console.log('data from index: '+JSON.stringify(req.body));
+   data = req.body;
+   res.redirect('/users/ind');
+});
+
+router.get('/ind', (req, res) => res.render('dining'));
+
+
+// router.get('/avail-data',function(req, res){
+//  res.render('contact',{data:data});
+// });
+
 router.get('/index', function(req, res){
  // console.log('database connencted::'+cruiseDetailsDb);
   var schema = {
@@ -73,7 +82,7 @@ var data;
  });
 
  router.get('/indexData',function(req,res){
-  res.render('avl-cruises',{data: data});
+  res.render('dining',{data: data});
  });
 
 router.get('/book-cruise',function(req,res){
