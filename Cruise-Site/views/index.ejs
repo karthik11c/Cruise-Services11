@@ -281,7 +281,25 @@
              var preld = document.getElementById('loading');
              preld.style.display = 'none';
 
-         }
+             var dtToday = new Date();
+
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if(month < 10)
+                    month = '0' + month.toString();
+                if(day < 10)
+                    day = '0' + day.toString();
+
+                var minDate= year + '-' + month + '-' + day;
+
+                $('#Cate').attr('min', minDate);
+
+         //     var myDate = document.querySelector(Cdate);
+         //       var today = new Date();
+         //       myDate.value = today.toISOString().substr(0, 10);
+         //
+       }
 
      </script>
 
@@ -355,7 +373,7 @@
    <!-- ##### DEPARTURE Month  -->
                          <div class="form-group">
                      <!--<label class="frm_capital_latter">DEPARTURE MONTH:</label>-->
-                         <input name="month" type="month" id="Cdate" class="form-control trans"  value="2019-03" />
+                         <input name="month" type="Date" id="Cdate" class="form-control trans"  value="" />
                       </div>
 
     <!--###### Length #######  -->
@@ -378,7 +396,7 @@
                       </div>
                       <div class="form-group">
 
-                       <input type="number" id="numP" class="form-control trans"  placeholder="Number of person"  required />
+                       <input type="number" id="numP" class="form-control trans" min="1"  placeholder="Number of person"  required />
 
                    </div>
                    			<span style="background:red;color:white;" id="err"></span>
@@ -513,31 +531,31 @@
                      <br />
                      <ul>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span> <a href="#"> Costa Cruises</a>
+                             <span class="fa fa-arrow-right"></span>   Costa Cruises
                          </li>
                          <li class="mbtn">
 
-                             <span class="fa fa-arrow-right"></span><a href="#">Royal Caribbean</a>
+                             <span class="fa fa-arrow-right"></span> Royal Caribbean
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Avalon Waterways</a>
-
-
-                         </li>
-                         <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">M.V.Paramhamsa</a>
+                             <span class="fa fa-arrow-right"></span> Avalon Waterways
 
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Oberioi M.V. Vrinda</a>
+                             <span class="fa fa-arrow-right"></span> M.V.Paramhamsa
+
+
+                         </li>
+                         <li class="mbtn">
+                             <span class="fa fa-arrow-right"></span> Oberioi M.V. Vrinda
 
                          </li>
 
 
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">MV mahabaahu</a>
+                             <span class="fa fa-arrow-right"></span> MV mahabaahu
 
                          </li>
 
@@ -550,45 +568,45 @@
                       <br />
                      <ul>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span> <a href="#"> Cochin</a>
+                             <span class="fa fa-arrow-right"></span>   Cochin
                          </li>
                          <li class="mbtn">
 
-                             <span class="fa fa-arrow-right"></span><a href="#">Maldives</a>
+                             <span class="fa fa-arrow-right"></span> Maldives
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Sri Lanka</a>
-
-
-                         </li>
-                         <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Singapore</a>
+                             <span class="fa fa-arrow-right"></span> Sri Lanka
 
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Dubai</a>
+                             <span class="fa fa-arrow-right"></span> Singapore
+
+
+                         </li>
+                         <li class="mbtn">
+                             <span class="fa fa-arrow-right"></span> Dubai
 
                          </li>
 
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Kathmandu</a>
+                             <span class="fa fa-arrow-right"></span> Kathmandu
 
                          </li>
 
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Pallathurathy</a>
+                             <span class="fa fa-arrow-right"></span> Pallathurathy
 
                          </li>
                     <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Bateswarshat</a>
+                             <span class="fa fa-arrow-right"></span> Bateswarshat
 
                          </li>
 
 
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Bangladesh</a>
+                             <span class="fa fa-arrow-right"></span> Bangladesh
 
                          </li>
 
@@ -602,25 +620,25 @@
                      <br />
                           <ul >
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span> <a href="#"> Transfer Your Booking</a>
+                             <span class="fa fa-arrow-right"></span>   Transfer Your Booking
                          </li>
                          <li class="mbtn">
 
-                             <span class="fa fa-arrow-right"></span><a href="#">Wedding and Honeymoon Cruise</a>
+                             <span class="fa fa-arrow-right"></span> Wedding and Honeymoon Cruise
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Group Cruise</a>
-
-
-                         </li>
-                         <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Lowest price Cruise</a>
+                             <span class="fa fa-arrow-right"></span> Group Cruise
 
 
                          </li>
                          <li class="mbtn">
-                             <span class="fa fa-arrow-right"></span><a href="#">Luxury Cruise</a>
+                             <span class="fa fa-arrow-right"></span> Lowest price Cruise
+
+
+                         </li>
+                         <li class="mbtn">
+                             <span class="fa fa-arrow-right"></span> Luxury Cruise
 
                          </li>
                      </ul>
