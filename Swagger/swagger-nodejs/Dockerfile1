@@ -1,0 +1,8 @@
+from node:lts-slim
+run npm install nodemon -g
+workdir appDir
+copy package.json .
+run npm install 
+copy . .
+expose 10010
+cmd npm start
