@@ -20,13 +20,24 @@ router.use(bodyParser.json());
 
 router.get('/login', (req, res) => res.render('login'));
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
 
-router.get('/BookingDetails', (req, res) => res.render('booking-det'));
+
+
+
+router.get('/custDetail', (req, res) => res.render('register'));
+
+router.get('/register', (req, res) => res.render('register'));
+router.get('/BookingDetails', (req, res) => res.render('BookingDetails'));
 
 router.get('/about', (req, res) => res.render('AboutCruise'));
 router.get('/contact', (req, res) => res.render('contact'));
 router.get('/dining', (req, res) => res.render('dining'));
+router.get('/customer-details', (req, res) => res.render('custumerDetail'));
+
+router.get('/avail-cruise',function(req,res){
+ res.render('bookCruise');
+});
+
 
 var data;
 router.post('/avail-cruise', function(req, res){
@@ -50,6 +61,10 @@ router.post('/avail-cruise', function(req, res){
               console.log('indexdata: '+JSON.stringify(data));
               res.render('AvailableCruise',{data:data});
        });
+});
+
+router.get('/cruise1',function(req,res){
+  res.render('cruise1');
 });
 
 

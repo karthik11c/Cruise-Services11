@@ -16,6 +16,9 @@
 
 	 <link href="/assets/CSS/bootstrap.css" rel="stylesheet" />
 <link href="/assets/css/all.min.css" rel="stylesheet" />
+<script src="/assets/JS/jequery.min.js"></script>
+    <script src="/assets/JS/bootstrap.min.js"></script>
+ 
 
 
       <style>
@@ -23,7 +26,6 @@
             margin-bottom:30px;
             height:auto;
             font-family: 'Montserrat', sans-serif;
-
         }
 
              body {
@@ -133,7 +135,6 @@
      -->
  <div class="container col-lg-8 col-lg-offset-1 ">
 
-
                     <!-- <div class="booking-form  cruiseblock panel-body">
 
                           <h3 class="page-header">Costa Cruise Line</h3>
@@ -193,9 +194,6 @@
                           </div>
 
                          </div> -->
-
-
-
        <% for(var i=0 ; i < data.length ; i++){ %>
      <div class="booking-form  cruiseblock panel-body">
          <h3 class="page-header"><%= data[i].cruiseName %></h3>
@@ -215,7 +213,7 @@
 
                      <tr>
                            <td>Ship Name :</td>
-                              <td></td>
+                              <td><%= data[i].shipName %></td>
                      </tr>
 
 
@@ -223,8 +221,6 @@
                            <td>Sailing Name :Mumbai to Sri</td>
                               <td><%= data[i].destination %></td>
                      </tr>
-
-
                      <tr>
                            <td>Depature port :</td>
                               <td><%= data[i].dePort %></td>
@@ -238,7 +234,7 @@
 
                      <tr>
                            <td>Price:</td>
-                              <td> 21</td>
+                              <td> <%= data[i].price %></td>
                      </tr>
                  </tbody>
              </table>
@@ -246,11 +242,9 @@
         </div>
          <div class="row ">
          <p class="panel-body">
-             Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
-              look out at the soft ripples, the tall coconut trees and the changing colours of the sky as the
-              sun rises and sets.  </p>
-
-             <a class="btn myblue" href="/users/booking-details" style="float:right;margin-right:100px;">Select</a>
+            <%=data[i].description %>
+              </p>
+             <a class="btn myblue" href="/users/BookingDetails" style="float:right;margin-right:100px;">Select</a>
          </div>
 
         </div>
@@ -262,7 +256,5 @@
     <% include divs/topScrollBtn %>
          <!--footer area-->
     <% include divs/footer %>
-
-
 
 </body>
