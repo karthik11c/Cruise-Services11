@@ -1,0 +1,7 @@
+from node:lts-slim
+workdir appDir
+copy package.json .
+run npm install
+copy . .
+expose 10010
+cmd npm start
