@@ -39,6 +39,7 @@ const cruiseDetailsDb = nano.use(cruiseDetailsDb1);
 // EJS
 
 app.use('/assets', express.static(process.cwd() + '/assets'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 module.exports = {
