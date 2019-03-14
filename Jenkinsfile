@@ -1,5 +1,5 @@
 node{
    stage('Docker build'){
-     docker ps
+     sh 'docker ps'
    }
 }
