@@ -23,4 +23,4 @@
   -  Run following command :
        - $ sh dockerShell.sh
   - Run above step 2) from docker-compose section for database load ..
-       - repeat the same procedure from step 3) to 6)...
+       - repeat the same procedure from step 3) to 6)..
