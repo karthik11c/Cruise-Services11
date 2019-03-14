@@ -17,6 +17,8 @@ var usersDb1 = process.env.usersDb;
 var regUsersDb1 = process.env.regUsersDb;
 var cruiseBookedUsersDb1 = process.env.cruiseBookedUsersDb;
 var cruiseDetailsDb1 = process.env.cruiseDetailsDb;
+//environment variaables...
+
 //cloudant URL
 var cloudantUrl = 'http://'+keys.dbHost+':'+keys.dbPort;
 console.log('cloudant-URL :'+cloudantUrl);

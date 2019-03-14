@@ -157,7 +157,7 @@ router.post('/register', (req, res) => {
                      "email": email
                   }
     }
-    cruiseDetailsDb.find(schema,function(err,result){
+    regUsersDb.find(schema,function(err,result){
          if(err)
            throw err;
          else if((JSON.stringify(result.docs))!="[]"){
