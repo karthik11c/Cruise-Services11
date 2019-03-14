@@ -5,20 +5,19 @@ const session = require('express-session');
 const keys = require('./keys');
 var bodyParser = require('body-parser');
 var Cloudant = require('@cloudant/cloudant');
-var dotenv = require('dotenv').config({ path: './config/.env' });
+ require('dotenv').config();
 var path = require('path');
+// var dotenv = require('dotenv').config({ path: './config/.env' });
 const app = express();
 
 // Passport Config
 require('./config/passport')(passport);
-
 // DB Config
 var usersDb1 = process.env.usersDb;
 var regUsersDb1 = process.env.regUsersDb;
 var cruiseBookedUsersDb1 = process.env.cruiseBookedUsersDb;
 var cruiseDetailsDb1 = process.env.cruiseDetailsDb;
 //environment variaables...
-
 //cloudant URL
 var cloudantUrl = 'http://'+keys.dbHost+':'+keys.dbPort;
 console.log('cloudant-URL :'+cloudantUrl);
@@ -38,9 +37,11 @@ const regUsersDb = nano.use(regUsersDb1);
 const cruiseBookedUsersDb = nano.use(cruiseBookedUsersDb1);
 const cruiseDetailsDb = nano.use(cruiseDetailsDb1);
 
+console.log('usersDbconst:'+process.env.regUsersDb);
+
 // EJS
 
-app.use('/assets', express.static(process.cwd() + '/assets'));
+app.use('/assets', express.static(__dirname + '/assets'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
