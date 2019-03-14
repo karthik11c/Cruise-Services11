@@ -1,17 +1,26 @@
 # Cruise-Services11
-
-#### Developement Mode ####
-   1) npm install
-      run this command in Cruise-Site as well as Swagger/swagger-nodejs/
-   2) run "docker-compose up" from root directory of this repo.
-   3) start coding..
-#### For those developers who already copied previous branches they need to pull changes in the repository..
-
-   1) npm install (option if node_modules are also changes)
-      run this command in Cruise-Site as well as Swagger/swagger-nodejs/
-   2) git pull origin folder-name
-   3)run "docker-compose up" from root directory of this repo.
-   4) start coding..
-
-#### If you want download this project then run following command
-   git clone https://github.com/karthik11c/Cruise-Services11.git
+#### Developement Mode(docker-compose) ####
+ Run following steps:
+   1) run this command from root of this repo.
+      $ docker-compose up
+   2) To load database frm tar file run following commands
+       a) $ docker ps                                [check container id for ibmcom/cloudant-developers and copy it]
+       b) $ docker cp cloudant.tar db_con_id:/srv/   [paste container id in place of db_con_id]      
+       c) $ docker exec -ti db_con_id sh             [paste container id in place of db_con_id]
+       d) # cd /src
+       e) # tar xvf cloudant.tar
+       f) # rm cloudant.tar
+   3) docker-compose restart
+   4) Open browser and goto following url for Cruise-Site UI
+      - http://localhost:2000
+         You need to register first and then login..
+   5) For database dashboard -
+      - http://localhost:3000/dashboard.html
+        you can log into dashboard by username - admin and password - pass
+   6) For SwaggerUI -
+      - http://localhost:5000/swagger-ui
+#### Developement Mode(dockerShell.sh) ####
+  -  Run following command :
+      $ sh dockerShell.sh
+  - Run above step 2) from docker-compose section for database load ..
+  repeat the same procedure from step 3) to 6)...
