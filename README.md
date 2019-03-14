@@ -4,9 +4,9 @@
    1) run this command from root of this repo.
       - $ docker-compose up
    2) To load database frm tar file run following commands
-      - a) $ docker ps                                [check container id for ibmcom/cloudant-developers and copy it]
-      - b) $ docker cp cloudant.tar db_con_id:/srv/   [paste container id in place of db_con_id]      
-      - c) $ docker exec -ti db_con_id sh             [paste container id in place of db_con_id]
+      - a) $ docker ps                                                  [check container id for ibmcom/cloudant-developers and copy it]
+      - b) $ docker cp cloudant.tar db_con_id:/srv/                     [paste container id in place of db_con_id]      
+      - c) $ docker exec -ti db_con_id sh                               [paste container id in place of db_con_id]
       - d) # cd /src
       - e) # tar xvf cloudant.tar
       - f) # rm cloudant.tar
