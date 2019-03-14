@@ -4,16 +4,11 @@
 # this container doesn't have any links..
 
  docker run -p 1000:8080 --name jenkins -v //var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/var/lib/jenkins -d getintodevops/jenkins-withdocker:lts
- docker logs jenkins
  # 2.CloudantDB
 
  docker run -p 3000:80 -v cloudant-data:/srv --name ibm-db -d ibmcom/cloudant-developer:latest
- docker logs ibm-db
  docker cp cloudant.tar ibm-db:/srv/
- docker exec -ti ibm-db /bin/sh
- cd /srv
- tar -xvf cloudant.tar
- rm cloudant.tar
+ docker exec -ti ibm-db //bin/sh
  docker container restart ibm-db
 
 # 3.Cruise-Site
