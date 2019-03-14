@@ -4,7 +4,8 @@
   "description": "Cruise-Booking App With Swagger-UI",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon -L /appDir/app.js"
+    "start": "nodemon -L /appDir/src/app.js",
+    "dev" : "nodemon -L /appDir/src/app.js"
   },
   "keywords": [],
   "author": "Karthik",

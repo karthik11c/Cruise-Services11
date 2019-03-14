@@ -14,7 +14,7 @@ services:
      - DB_USER=admin
      - DB_PASS=pass
    volumes:
-    - ./Cruise-Site:/appDir
+    - ./Cruise-Site:/appDir/src
  db:
    image: ibmcom/cloudant-developer:latest
    ports:
@@ -40,6 +40,6 @@ services:
    depends_on:
      - uinodejs
    volumes:
-     - ./Swagger/swagger-nodejs:/appDir
+     - ./Swagger/swagger-nodejs:/appDir/src
 volumes:
  cloudant-data:
