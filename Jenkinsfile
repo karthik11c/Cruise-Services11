@@ -1,5 +1,6 @@
-node{
-   stage('Docker build'){
-     sh 'docker ps'
-   }
+node {
+    agent any
+        stage('Build image') {
+          sh 'docker ps'
+        }
 }
