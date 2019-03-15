@@ -7,13 +7,13 @@
   - 3) sh# rm cloudant.tar
   - 4) sh# exit
   - The script will complete its action automatically after step 4).You need wait until the $ sign appears on the terminal...
-    5) Open browser and goto following url for Cruise-Site UI
+  - 5) Open browser and goto following url for Cruise-Site UI
          - http://localhost:2000
          - You need to register first and then login..
-    6) For database dashboard -
+  - 6) For database dashboard -
          - http://localhost:3000/dashboard.html
          - you can log into dashboard by username - admin and password - pass
-    7) For SwaggerUI -
+  - 7) For SwaggerUI -
          - http://localhost:5000/swagger-ui
 
 #### Developement Mode(docker-compose) ####
