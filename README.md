@@ -1,5 +1,5 @@
 # Cruise-Services11
-#### Developement Mode(dockerShell.sh) ####
+#### Developement Mode(dockerShell.sh) #####
   -  Run following command :
        - $ sh dockerShell.sh
   - 1) sh# cd /srv    
