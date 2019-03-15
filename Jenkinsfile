@@ -17,6 +17,5 @@ node{
 	   }
 	}
        }catch(err){
-	     emailext body: 'Build Failed \n Found Exception : ' + {err}, recipientProviders: [developers()], subject: 'Build Failure Notification', to: 'karthik11yemul@gmail.com,ganeshtatipamul27@gmail.com,amitsilam25@gmail.com,shravaniboddul041@gmail.com,ishwariparanjape@gmail.com'
-	}
+	    }
 }
