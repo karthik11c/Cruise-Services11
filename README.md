@@ -1,4 +1,21 @@
 # Cruise-Services11
+#### Developement Mode(dockerShell.sh) ####
+  -  Run following command :
+       - $ sh dockerShell.sh
+  - 1) sh# cd /srv    
+  - 2) sh# tar -xvf cloudant.tar
+  - 3) sh# rm cloudant.tar
+  - 4) sh# exit
+    The script will complete its action automatically after step 4).You need wait until the $ sign appears on the terminal...
+    5) Open browser and goto following url for Cruise-Site UI
+         - http://localhost:2000
+         - You need to register first and then login..
+    6) For database dashboard -
+         - http://localhost:3000/dashboard.html
+         - you can log into dashboard by username - admin and password - pass
+    7) For SwaggerUI -
+         - http://localhost:5000/swagger-ui
+
 #### Developement Mode(docker-compose) ####
  Run following steps:
    1) run this command from root of this repo.
@@ -19,8 +36,3 @@
         - you can log into dashboard by username - admin and password - pass
    6) For SwaggerUI -
         - http://localhost:5000/swagger-ui
-#### Developement Mode(dockerShell.sh) ####
-  -  Run following command :
-       - $ sh dockerShell.sh
-  - Run above step 2) from docker-compose section for database load ..
-       - repeat the same procedure from step 3) to 6)...
