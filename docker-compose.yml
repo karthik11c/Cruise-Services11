@@ -2,6 +2,7 @@ version: '2'
 services:
  uinodejs:
    build: ./Cruise-Site
+   image: front-end
    ports:
      - 2000:10010
    links:

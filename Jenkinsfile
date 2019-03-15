@@ -1,14 +1,22 @@
-node {
-        stage('Clone Repo'){
-           checkout scm
-        }
-        stage('Build Cruise-Site Image') {
-          sh 'docker build -t cruise_site $(pwd)/Cruise-Site'
-        }
-        stage('Run Docker Image') {
-             docker.withRegistry('https://docker.io', 'docker-cred') {
-               sh 'docker tag cruise_site karthik11c/cruise-site:lts'
-               sh 'docker push karthik11c/cruise-site:lts'
-             }
-        }
+node{
+     try{
+
+	stage('Check Repo'){
+	           checkout scm
+	}
+	stage('Build Images'){
+		   sh 'docker-compose build'
+	}
+	stage('Check Builds'){
+	           sh 'docker images'
+	}
+	stage('Push Image'){
+		docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
+		   sh 'docker tag front-end karthik11c/front-end:lts'
+		   sh 'docker push karthik11c/front-end:lts'
+	   }
+	}
+       }catch(err){
+	     emailext body: 'Build Failed \n Found Exception : ' + {err}, recipientProviders: [developers()], subject: 'Build Failure Notification', to: 'karthik11yemul@gmail.com,ganeshtatipamul27@gmail.com,amitsilam25@gmail.com,shravaniboddul041@gmail.com,ishwariparanjape@gmail.com'
+	}
 }
