@@ -6,7 +6,7 @@
   - 2) sh# tar -xvf cloudant.tar
   - 3) sh# rm cloudant.tar
   - 4) sh# exit
-    The script will complete its action automatically after step 4).You need wait until the $ sign appears on the terminal...
+  - The script will complete its action automatically after step 4).You need wait until the $ sign appears on the terminal...
     5) Open browser and goto following url for Cruise-Site UI
          - http://localhost:2000
          - You need to register first and then login..
