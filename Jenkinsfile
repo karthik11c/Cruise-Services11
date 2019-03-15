@@ -7,8 +7,8 @@ node {
         }
         stage('Run Docker Image') {
              docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
-               docker tag cruise_site karthik11c/cruise-site:lts
-               docker push karthik11c/cruise-site:lts
+               sh 'docker tag cruise_site karthik11c/cruise-site:lts'
+               sh 'docker push karthik11c/cruise-site:lts'
              }
         }
 }
