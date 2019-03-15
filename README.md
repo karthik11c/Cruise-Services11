@@ -16,7 +16,7 @@
   - 7) For SwaggerUI -
          - http://localhost:5000/swagger-ui
 
-#### Developement Mode(docker-compose) ####
+#### Developement Mode(docker-compose) #####
  Run following steps:
    1) run this command from root of this repo.
       - $ docker-compose up
