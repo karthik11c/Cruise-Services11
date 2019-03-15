@@ -1,4 +1,7 @@
 node {
+        stage('Clone Repo'){
+           checkout scm
+        }
         stage('Build Cruise-Site Image') {
           sh 'docker build -t cruise_site $(pwd)/Cruise-Site'
         }
