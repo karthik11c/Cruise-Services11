@@ -6,6 +6,9 @@ node {
           sh 'docker build -t cruise_site $(pwd)/Cruise-Site'
         }
         stage('Run Docker Image') {
-          sh 'docker images'
+             docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
+               docker tag cruise_site karthik11c/cruise-site:lts
+               docker push karthik11c/cruise-site:lts
+             }
         }
 }
