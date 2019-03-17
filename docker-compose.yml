@@ -37,9 +37,14 @@ services:
    ports:
      - 8000:10010
    links:
-     - uinodejs
+     - db
    depends_on:
-     - uinodejs
+     - db
+   environment:
+     - DB_HOST=db
+     - DB_PORT=80
+     - DB_USER=admin
+     - DB_PASS=pass
    volumes:
      - ./Swagger/swagger-nodejs:/appDir/src
 volumes:
