@@ -16,9 +16,8 @@ node{
 		   sh 'docker push karthik11c/cruise-site:lts'
 	   }
 	}
+     echo env.EMAIL-ADDR
        }catch(err){
-                  emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Failed... ', to: env.EMAIL-ADDR
-	    }finally{
-       emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Successful... ', to: env.EMAIL-ADDR
-      }
+
+	    }
 }
