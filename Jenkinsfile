@@ -10,12 +10,7 @@ node{
 	stage('Check Builds'){
 	           sh 'docker images'
 	}
-	stage('Push Image'){
-		docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
-		   sh 'docker tag cruise-site karthik11c/cruise-site:lts'
-		   sh 'docker push karthik11c/cruise-site:lts'
-	   }
-	}
+	
 	     stage('send email'){
 		emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Success... ', to: '${EMAIL}'
 	     }
