@@ -16,7 +16,7 @@ node{
 		   sh 'docker push karthik11c/cruise-site:lts'
 	   }
 	}
-	     echo "${env.EMAIL}"
+	     echo "${EMAIL}"
        }catch(err){
 
 	    }
