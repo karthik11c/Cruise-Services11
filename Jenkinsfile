@@ -16,7 +16,9 @@ node{
 		   sh 'docker push karthik11c/cruise-site:lts'
 	   }
 	}
-	     echo "${EMAIL}"
+	     stage('echo email'){
+		 echo "${EMAIL}"     
+	     }
        }catch(err){
 
 	    }
