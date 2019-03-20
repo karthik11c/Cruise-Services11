@@ -16,8 +16,8 @@ node{
 		   sh 'docker push karthik11c/cruise-site:lts'
 	   }
 	}
-	     stage('echo email'){
-		 echo "${EMAIL}"     
+	     stage('send email'){
+		emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Success... ', to: '${EMAIL}'
 	     }
        }catch(err){
 
