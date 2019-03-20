@@ -17,5 +17,8 @@ node{
 	   }
 	}
        }catch(err){
-	    }
+                  emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Failed... ', to: env.EMAIL-ADDR
+	    }finally{
+       emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Successful... ', to: env.EMAIL-ADDR
+      }
 }
