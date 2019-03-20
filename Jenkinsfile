@@ -10,11 +10,7 @@ node{
 	stage('Check Builds'){
 	           sh 'docker images'
 	}
-	
-	     stage('send email'){
-		emailext body: 'This is Jenkins Build', recipientProviders: [developers()], subject: 'Build Success... ', to: '${EMAIL}'
-	     }
-       }catch(err){
+     }catch(err){
 
 	    }
 }
