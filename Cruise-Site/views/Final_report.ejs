@@ -2,47 +2,10 @@
     <title></title>
 
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="CSS/font_style.css" rel="stylesheet" />
-   <link href="CSS/font-awesome.min.css" rel="stylesheet" />
-    <link href="CSS/font-awesome.css" rel="stylesheet" />
-    <link href="CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="CSS/main.css" rel="stylesheet" />
-     <link href="CSS/bootstrap.css" rel="stylesheet" />
-   <link href="CSS/all.css" rel="stylesheet" />
-    <!--<script src="JS/Custom.js"></script>-->
-    <script src="JS/modernizr-2.6.2.min.js"></script>
-    <link href="CSS/all.min.css" rel="stylesheet" />
-    <script src="JS/toggle.js"></script>
-    <link href="CSS/style.css" rel="stylesheet" />
-     <link rel="icon" href="Images/cicon3.jpg" type="image/gif" sizes="16x16">
-   
+  
 
-    <style>
-        span {
-            color:black;
-            font-size:15px;
-        }
 
-        .v1 {
-  border-left: 2px solid #808080;
-  height: 130px;
-}
-        .activeblk {
-            background:#e74c3c;
-            color:white;
-           
-        }
-        .inactiveblk {
-             background:#dcdde1;
-            color:white;
-           
-        }
-        .successblk {
-              background:#2ecc71;
-            color:white;
-          
-        }
-    </style>
+<% include divs/head %>
 
 
     <script>
@@ -71,61 +34,24 @@
 
 </script>
 </head>
-<body onload="preloader()">
+<body onload="preloader()" class="bg-light">
 
 
-    <div class="container">
-        
-        <div class="row" >
-            <div class="col-lg-2 panel-body successblk">
-               <a href="AllCruises.html" class="navbar-brand successblk">
-                   Step 1
-                   <i class="fa fa-arrow-right"></i>
-               </a>
-            </div>
 
-                 <div class="col-lg-2 panel-body activeblk">
-               <a href="BookingDetails.html" class="navbar-brand activeblk">
-                   Step 2
-                   <i class="fa fa-arrow-right"></i>
-               </a>
-            </div>
-       
-                 <div class="col-lg-2 panel-body inactiveblk">
-               <div class="navbar-brand">
-                   Step 3
-                   <i class="fa fa-arrow-right"></i>
-               </div>
-            </div>
-                 <div class="col-lg-2 panel-body inactiveblk">
-               <div class="navbar-brand">
-                   Step 4
-                   <i class="fa fa-arrow-right"></i>
-               </div>
-            </div>
-       
-                 <div class="col-lg-2 panel-body inactiveblk">
-               <div class="navbar-brand">
-                   Step 5
-                   <i class="fa fa-arrow-right"></i>
-               </div>
-            </div>
-       
-       
-        </div>
-        
-    </div>
+<% include divs/navbar %>
 
-    <div class="container-fluid">
 
-        <div class="row">
+      
+    <div class="ftco-section contact-section">
+
+        <div class="row block-9">
             
-            <div class="col-lg-6">
+            <div class="col-lg-6 container">
 
                 <div class="booking-form" id="div1">
 
                     <div>
-                            <h2 class="panel-heading">Passenger 1</h2>
+                            <h3 class="panel-heading">Passenger 1</h3>
                             <div class="panel" style="margin-left:80px;text-align:justify;">
                             <div class="row">
                                    <span>Name &nbsp :  ABC </span>
@@ -139,7 +65,7 @@
                     </div>
 
                     <div>
-                            <h2 class="panel-heading">Passenger 2</h2>
+                            <h3 class="panel-heading">Passenger 2</h3>
                             <div class="panel" style="margin-left:80px;text-align:justify">
                             <div class="row">
                                    <span>Name &nbsp :  ABC </span>
@@ -160,7 +86,7 @@
                             <div class="row"> 
                                 
                                 <div class="col-lg-5"> 
-                                    <h2>Tour Detail</h2>
+                                    <h3>Tour Detail</h3>
                                 <table>
                                     <tbody>
                                         <tr>
@@ -188,7 +114,7 @@
                                 <div class="v1"> </div>
 
                                 <div class="col-lg-5">
-                                    <h2>Room Detail</h2>
+                                    <h3>Room Detail</h3>
                                 <table>
                                     <tbody>
                                         <tr>
@@ -228,4 +154,13 @@
         </div>
 
     </div>
+
+
+<% include divs/topScrollBtn %>
+<% include divs/footer %>
+
+
+<% include divs/lib %>
+
+
 </body>
