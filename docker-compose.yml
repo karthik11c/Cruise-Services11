@@ -17,7 +17,7 @@ services:
    volumes:
     - ./Cruise-Site:/appDir/src
  db:
-   image: ibmcom/cloudant-developer:latest
+   build: ./Cloudant
    ports:
      - 3000:80
    volumes:
@@ -47,5 +47,13 @@ services:
      - DB_PASS=pass
    volumes:
      - ./Swagger/swagger-nodejs:/appDir/src
+ jenkins:
+   image: getintodevops/jenkins-withdocker:lts
+   ports:
+     - 9000:8080
+   volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - jenkins-data:/var/jenkins_home
 volumes:
  cloudant-data:
+ jenkins-data:

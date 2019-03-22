@@ -8,7 +8,6 @@ var Cloudant = require('@cloudant/cloudant');
 require('dotenv').config();
 var path = require('path');
 const app = express();
-
 // Passport Config
 require('./config/passport')(passport);
 // DB Config
