@@ -16,7 +16,9 @@ node{
            sh 'docker tag cruise-site karthik11c/cruise-site:lts'
            sh 'docker tag swagger-nodejs karthik11c/swagger-nodejs:lts'
            sh 'docker tag db karthik11c/db:lts'
-         }
+           sh 'docker push karthik11c/cruise-site:lts'   
+	   sh 'docker push karthik11c/swagger-nodejs:lts'
+	 }
       }
 	     emailext body: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - $BUILD_STATUS:Check console output at $BUILD_URL to view the results.', recipientProviders: [developers()], subject: 'Build Successful... ', to: '${EMAIL}'
      }catch(err){
