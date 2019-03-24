@@ -1,30 +1,30 @@
+//dependencies
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 var bodyParser = require('body-parser');
-// Load User model
+
+// Get DataBase module from app.js
 const Db = require('../app');
 
+//get all refrence to all databases from app.js
 var regUsersDb = Db.regUsersDb;
 var cruiseDetailsDb = Db.cruiseDetailsDb;
 
-router.get('/homepage', (req, res) => res.render('homepage'));
-
+//BodyParser load in the router...
 router.use(bodyParser.urlencoded({
     extended: true
 }));
-
 router.use(bodyParser.json());
-// Login Page
+// HomePage...
+// router.get('/homepage', (req, res) => res.render('homepage'));
 
+
+// 1. Login Page (login GET)
 router.get('/login', (req, res) => res.render('login'));
-// Register Page
 
-
-
-
-router.get('/custDetail', (req, res) => res.render('register'));
+// router.get('/custDetail', (req, res) => res.render('register'));
 
 router.get('/register', (req, res) => res.render('register'));
 router.get('/BookingDetails', (req, res) => res.render('BookingDetails'));
@@ -67,31 +67,67 @@ router.get('/cruise1',function(req,res){
   res.render('cruise1');
 });
 
-
+//index get request after login...
 router.get('/index', function(req, res){
  // console.log('database connencted::'+cruiseDetailsDb);
-  var schema = {
-    "selector": {
-            "_id": {
-                "$gt": null
-            }
-    }
-  }
+  // var schema = {
+  //   "selector": {
+  //           "_id": {
+  //               "$gt": null
+  //           }
+  //   }
+  // }
 
-  cruiseDetailsDb.find(schema,function(err,result){
-           if(err)
-             throw err;
-           else if((JSON.stringify(result.docs))!="[]"){
-            }
-             data = result.docs;
-             // console.log('data:'+JSON.stringify(data));
-             console.log('indexdata: '+JSON.stringify(result.docs));
-             res.render('index',{data: data});
-      });
- });
+//we need to find all cruiseNames,destinations,departure ports etc. and need to be load into dropdown of find root...
+//finding cruise-details
+var cruises = [];
+var dePort = [];
+var cruiselengths = [];
+var data= [];
+cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, function(err, body) {
+  if (!err) {
+    body.rows.forEach(function(doc) {
+       // console.log(JSON.stringify(doc));
+      cruises.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
+    });
+      // data.push(cruises);
+      cruiseDetailsDb.view('sort', 'dePort',{'reduce':'true','group_level':'1'}, function(err, body) {
+        if (!err) {
+          body.rows.forEach(function(doc) {
+            // console.log(JSON.stringify(doc));
+            dePort.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
+          });
+            // data.push(dePort);
+            cruiseDetailsDb.view('sort', 'cruiseDur',{'reduce':'true','group_level':'1'}, function(err, body) {
+             if (!err) {
+               body.rows.forEach(function(doc) {
+                 // console.log(JSON.stringify(doc));
+                 cruiselengths.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
+              });//body
+                 // data.push(cruiselengths);
+                  // console.log('final data:'+data);
+                   console.log('cruise::+ '+cruises);
+                   res.render('index',{cruises: cruises,dePort:dePort,cruiseDur:cruiselengths});
+              }//if
+               else{
+                console.log(err);
+             }
+             });
+           }//if
+           else{
+              console.log(err);
+           }
+            });
+          }//if
+          else{
+             console.log(err);
+          }
+          });
+ //      });
+}); //end of get request of index
 
 var data;
-
+//user selected data needs to be send to server for filtering user results from database...
  router.post('/index',function(req, res){
  const { cruiseName, destination, dePort, date } = req.body;
  console.log('bodyCuirse:'+req.body.cruiseName);
@@ -109,13 +145,17 @@ var data;
        if(err) console.log(err);else console.log('cruise-Info:'+JSON.stringify(result.docs));
       data = result.docs;
    });
-
+//we cannot render a view in any post request so we need to redirect to another get request from there we can render a view...
    res.redirect('/users/indexData');
+ });  //end of index post...
+
+
+//render post request data
+ router.get('/indexData',function(req,res){
+  res.render('AvailableCruise',{data: data});
  });
 
- router.get('/indexData',function(req,res){
-  res.render('dining',{data: data});
- });
+
 
 router.get('/book-cruise',function(req,res){
 res.render('bookCruise');
@@ -124,7 +164,7 @@ res.render('bookCruise');
 
 
 
-// Register
+// Register Page post i.e user send his information to this post request...
 router.post('/register', (req, res) => {
 
   const { name, email, password, password2 } = req.body;
@@ -207,7 +247,7 @@ router.post('/register', (req, res) => {
   }
 });
 
-// Login
+// Login check username && password match using passport
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: 'index',

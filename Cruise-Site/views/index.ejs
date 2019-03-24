@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
-    
+
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/css/magnific-popup.css">
@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
 
-    
+
     <link rel="stylesheet" href="/assets/css/flaticon.css">
     <link rel="stylesheet" href="/assets/css/icomoon.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
 
-   
+
  </head>
  <body onload="preload()"   >
 
@@ -46,7 +46,7 @@
 
         </script>
 
-  
+
       <% include divs/navbar%>
 
 
@@ -55,92 +55,63 @@
       <div class="overlay"> </div>
       <div class="container-fluid">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
-         
-
-            
-              
-         
             <div class="col-lg-3" style="margin-top:5%;">
                 <div class="container search-wrap-1 ftco-animate p-4" ">
-                   <center>                 
+                   <center>
                               <h2 style="color:white">Find Your Route</h2>
-              <form class="horizontal cover-container" >
+              <form class="horizontal cover-container" method="POST" action="/users/index">
                       <div class="form-group">
-                        <select id="destination_result" class="form-control trans form-field"  required>
-                          <option value="All Destination" >Any Destination</option>
-                            <option>Cochin</option>
-                            <option> Singapore</option>
-                            <option> Maldives</option>
-                            <option>Sri Lanka</option>
-                            <option> Dubai</option>
-                            <option>Kathmandu</option>
-                                    <option>Pallathurathy</option>
-                            <option>Sudarbans</option>
-                            <option>Jorhat</option>
-                            <option>Mumbai</option>
-                            <option>Bangladesh</option>
-                            <option>Goa</option>
-
-                            <option>Venice</option>
-
-                    </select>
-
-                         </div>
-                      <div class="form-group">
-                            <select id="departure_result" class="form-control trans"  required>
-                              <option value="All Departure"   >Any Departure Port</option>
-                                <option>Cochin</option>
-                                <option> Singapore</option>
-                                <option> Maldives</option>
-                                <option>Sri Lanka</option>
-                                <option> Dubai</option>
-                                <option>Kathmandu</option>
-                                <option>Pallathurathy</option>
-                                <option>Sudarbans</option>
-                                <option>Jorhat</option>
-                                <option>Mumbai</option>
-                                <option>Bangladesh</option>
-                                <option>Goa</option>
-
-                                <option>Venice</option>
-                                </select>
-                         </div>
-                                          <div class="form-group">
-                        <input type="month" id="Cdate" class="form-control trans"  value="2019-03" />
-      
-                  </div>
-                                      <div class="form-group">
-                         <select id="length" class="form-control trans"  required>
-                          <option value="All Length">Select Length</option>
-                          <option value="2">3-5 nights</option><option value="3">6-9 nights</option><option value="4">10-14 nights</option><option value="5">15+ nights</option>    </select>
-                      </div>
-                                      <div class="form-group">
-                    <select id="all_cruise" class="form-control trans" onchange="get_view_data(this.value, 'home');" required>
-                      <option value="All Cruise Lines">All Cruise Lines</option>
-                        <option>Costa Cruises </option>
-                        <option>Royal Caribbean</option>
-                        <option>Avalon Waterways</option>
-                        <option>Oberio M.V.Vrinda</option>
-                        <option>M.V.Paramhamsa</option>
-                        <option>MV Mahabaahu</option>
+                        <select name="destination" id="destination_result" class="form-control trans form-field"  required>
+                          <option value="Select Destination" selected disabled >Any Destination</option>
+                          <% for(var i=0 ; i < dePort.length ; i++){ %>
+                          <option > <%= dePort[i] %></option>
+                          <%}%>
                         </select>
-                     </div>
+                    </div>
+                      <div class="form-group">
+                            <select name=dePort id="departure_result" class="form-control trans"  required>
+                              <option value="Select Cruise" selected disabled>Select DeparturePort</option>
+                                    <% for(var i=0 ; i < cruises.length ; i++){ %>
+                                    <option > <%= cruises[i] %></option>
+                                    <%}%>
+                             </select>
+                         </div>
+                        <div class="form-group">
+                        <input type="month" id="Cdate" class="form-control trans"  value="2019-03" />
+
+                         </div>
+                                      <div class="form-group">
+                         <select name="Length" id="length" class="form-control trans"  required>
+                           <option value="Select Length" selected disabled>Select Length</option>
+                                   <% for(var i=0 ; i < cruiseDur.length ; i++){ %>
+                                   <option > <%= cruiseDur[i] %></option>
+                                   <%}%>
+                            </select>
+                         </div>
+                      <!-- <div class="form-group">
+                    <select name="cruiseName" id="all_cruise" class="form-control trans" onchange="get_view_data(this.value, 'home');" required>
+                      <option value="All Cruise Lines" selected disabled>Select Cruise</option>
+                            <% for(var i=0 ; i < cruises.length ; i++){ %>
+                            <option > <%= cruises[i] %></option>
+                            <%}%>
+
+                        </select>
+                     </div> -->
 
                                   <div class="form-group">
 
                       <input type="number" id="numP" class="form-control trans" min="1" placeholder="Number of person"  required />
-                                    
+
                   </div>
                             <span style="background:red;color:white;" id="err"></span>
               <div class="col-lg align-self-end">
                                 <div class="form-group">
                                     <div class="form-field">
-                                <a href="/users/avail-cruise" onclick="validation()" class="form-control btn btn-primary">Search </a>
-                                        <!--<button onclick="validation()"></button>-->
-                                        
+                                        <button type="submit" onclick="validation()" class="form-control btn btn-primary">Search </button>-->
+
                                         <script >
     function validation() {
-        alert("hhhh" + sessionStorage.getItem('total'));
+        <!-- alert("hhhh" + sessionStorage.getItem('total')); -->
 
         var src = document.getElementById('departure_result');
 
@@ -151,7 +122,7 @@
         var infants = document.getElementById('infant');
         sessionStorage.setItem("total", nPerson.value);
         var temp = sessionStorage.setItem("source", src.value);
-        
+
         sessionStorage.setItem("destination", dest.value);
 
         sessionStorage.setItem("currentDate", cdate.value);
@@ -159,22 +130,22 @@
         sessionStorage.setItem("length", length.value);
         sessionStorage.setItem("Infants", infants.value);
 
-     
+
     }
                                         </script>
 
                               </div>
                           </div>
                             </div>
-        </form>    
+        </form>
 
 </center>
 
                 </div>
             </div>
-     
 
-                
+
+
 
           <div class="col-md-6 ftco-animate mt-5 offset-1 justify-content-end" data-scrollax=" properties: { translateY: '70%' }" >
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Be a Traveler not a Tourist</h1>
@@ -184,7 +155,7 @@
       </div>
     </div>
       </section>
-   
+
 
 
     <section class="ftco-section">
@@ -318,9 +289,9 @@
               <div class="media-body">
                   <h3 class="heading mb-3">24/7 Service</h3>
                 <p>You only need to pay a deposit when you book your trip in advance!</p>
-    
+
                </div>
-            </div>      
+            </div>
           </div>
           <div class="col-md-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block">
@@ -331,7 +302,7 @@
                   <h3 class="heading mb-3">No Booking Fees</h3>
             <p>You only need to pay a deposit when you book your trip in advance!</p>
                  </div>
-            </div>    
+            </div>
           </div>
           <div class="col-md-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block">
@@ -341,7 +312,7 @@
                   <h3 class="heading mb-3">Best Price Gurantee</h3>
                             <p> We’re giving you the lowest rate possible – and we guarantee it!</p>
                  </div>
-            </div>      
+            </div>
           </div>
           <div class="col-md-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block">
@@ -351,18 +322,18 @@
               <h3 class="heading mb-3"> Flexible Payment</h3>
                 <p>You only need to pay a deposit when you book your trip in advance!</p>
                 </div>
-            </div>      
+            </div>
           </div>
         </div>
       </div>
     </section>
-    
+
     <section class="ftco-counter img" id="section-counter">
         <div class="container">
             <div class="row d-flex">
                 <div class="col-md-6 d-flex">
                          <iframe width="1500" height="600" src="https://sketchfab.com/models/25044269340548d2bc776e4abdfc82cf/embed?autospin=0.2&amp;autostart=1&amp;preload=1" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-               
+
                     <!--<div class="img d-flex align-self-stretch" style="background-image:url(assets/images/about.jpg);"></div>-->
                 </div>
                 <div class="col-md-6 pl-md-5 py-5">
@@ -548,7 +519,7 @@
                             MV mahabaahu
 
                         </li>
-                   
+
                     </ul>
 
                     </div>
@@ -595,7 +566,7 @@
                             Kathmandu
 
                         </li>
-                   
+
                         <li class="ftco-animate tips">
                             Pallathurathy
 
@@ -604,13 +575,13 @@
                             Bateswarshat
 
                         </li>
-                   
+
 
                         <li class="ftco-animate tips">
                             Bangladesh
 
                         </li>
-                   
+
                     </ul>
 
                     </div>
@@ -619,7 +590,7 @@
         </div>
         </div>
     </section>
-        
+
 
     <section class="ftco-section ftco-no-pb testimony-section" style="background-image: url(/assets/images/bg_1.jpg);">
         <div class="overlay"></div>
@@ -717,7 +688,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="/assets/js/google-map.js"></script>
   <script src="/assets/js/main.js"></script>
-    
+
 
 
 

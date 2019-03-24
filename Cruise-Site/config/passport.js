@@ -16,6 +16,7 @@ module.exports = function(passport) {
          if(err)
            throw err;
          else if((JSON.stringify(result.docs))=="[]"){
+            console.log('email incorrect...');
             return done(null, false, { message: 'That email is not registered' });}
          else {
            //  Match password
@@ -24,6 +25,7 @@ module.exports = function(passport) {
                if (isMatch) {
                   return done(null, result);
                } else {
+                   console.log('password incorrect...');
                   return done(null, false, { message: 'Password incorrect' });
                }
              });
