@@ -5,7 +5,7 @@ const session = require('express-session');
 const keys = require('./keys');
 var bodyParser = require('body-parser');
 var Cloudant = require('@cloudant/cloudant');
-require('dotenv').config();
+require('dotenv').config({path:'/appDir/src/config/.env'});
 var path = require('path');
 const app = express();
 // Passport Config

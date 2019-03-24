@@ -3,7 +3,7 @@
 # 1.Jenkins Container
 # this container doesn't have any links..
 
- docker run -p 1000:8080 --name jenkins -v //var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/var/lib/jenkins -d getintodevops/jenkins-withdocker:lts
+ docker run -p 1000:8080 --name jenkins -v //var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/var/lib/jenkins -v jenkins-conf:/var/lib/jenkins -d jenup
  # 2.CloudantDB
 
  docker build -t ibmbuild ./Cloudant
