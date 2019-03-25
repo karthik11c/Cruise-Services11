@@ -69,8 +69,8 @@
                         </select>
                     </div>
                       <div class="form-group">
-                            <select name=dePort id="departure_result" class="form-control trans"  required>
-                              <option value="Select Cruise" selected disabled>Select DeparturePort</option>
+                            <select name=cruiseName id="departure_result" class="form-control trans"  required>
+                              <option value="Select Cruise" selected disabled>Select Cruise</option>
                                     <% for(var i=0 ; i < cruises.length ; i++){ %>
                                     <option > <%= cruises[i] %></option>
                                     <%}%>
@@ -81,7 +81,7 @@
 
                          </div>
                                       <div class="form-group">
-                         <select name="Length" id="length" class="form-control trans"  required>
+                         <select name="CruiseDur" id="length" class="form-control trans"  required>
                            <option value="Select Length" selected disabled>Select Length</option>
                                    <% for(var i=0 ; i < cruiseDur.length ; i++){ %>
                                    <option > <%= cruiseDur[i] %></option>
