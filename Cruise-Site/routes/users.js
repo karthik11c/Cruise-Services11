@@ -4,6 +4,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+router.use(cookieParser());
+router.use(session({secret: "Your secret key"}));
 
 // Get DataBase module from app.js
 const Db = require('../app');
@@ -20,7 +25,10 @@ router.use(bodyParser.json());
 // HomePage...
 // router.get('/homepage', (req, res) => res.render('homepage'));
 
-
+//Global variables
+var data;
+var mapData={};
+let filteredData={};
 // 1. Login Page (login GET)
 router.get('/login', (req, res) => res.render('login'));
 
@@ -39,7 +47,6 @@ router.get('/avail-cruise',function(req,res){
 });
 
 
-var data;
 router.post('/avail-cruise', function(req, res){
    console.log('data from index: '+(JSON.stringify(req.body)));
    //find matching data from ui fields into db
@@ -69,44 +76,29 @@ router.get('/cruise1',function(req,res){
 
 //index get request after login...
 router.get('/index', function(req, res){
- // console.log('database connencted::'+cruiseDetailsDb);
-  // var schema = {
-  //   "selector": {
-  //           "_id": {
-  //               "$gt": null
-  //           }
-  //   }
-  // }
-
 //we need to find all cruiseNames,destinations,departure ports etc. and need to be load into dropdown of find root...
 //finding cruise-details
 var cruises = [];
 var dePort = [];
 var cruiselengths = [];
-var data= [];
+if(!req.session.mapData){
 cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, function(err, body) {
   if (!err) {
     body.rows.forEach(function(doc) {
-       // console.log(JSON.stringify(doc));
       cruises.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
     });
-      // data.push(cruises);
       cruiseDetailsDb.view('sort', 'dePort',{'reduce':'true','group_level':'1'}, function(err, body) {
         if (!err) {
           body.rows.forEach(function(doc) {
-            // console.log(JSON.stringify(doc));
             dePort.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
           });
-            // data.push(dePort);
             cruiseDetailsDb.view('sort', 'cruiseDur',{'reduce':'true','group_level':'1'}, function(err, body) {
              if (!err) {
                body.rows.forEach(function(doc) {
-                 // console.log(JSON.stringify(doc));
                  cruiselengths.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
               });//body
-                 // data.push(cruiselengths);
-                  // console.log('final data:'+data);
-                   console.log('cruise::+ '+cruises);
+                   mapData = {'cruises': cruises,'dePort':dePort,'cruiseDur':cruiselengths};
+                   req.session.mapData = mapData;
                    res.render('index',{cruises: cruises,dePort:dePort,cruiseDur:cruiselengths});
               }//if
                else{
@@ -123,42 +115,47 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
              console.log(err);
           }
           });
- //      });
+        }else {
+          res.render('index',req.session.mapData);
+        }
 }); //end of get request of index
-
-var data;
 //user selected data needs to be send to server for filtering user results from database...
  router.post('/index',function(req, res){
- const { cruiseName, destination, dePort, date } = req.body;
- console.log('bodyCuirse:'+req.body.cruiseName);
-  console.log('cruiseName:'+JSON.stringify(cruiseName));
+ console.log('This is req :'+JSON.stringify(req.body));
+ const { destination, cruiseName, cruiseDur } = req.body;
    var schema = {
-    "selector":{
-       'cruise-name': cruiseName,
-       'destination': destination,
-       'dep_port': dePort,
-       'date': date
-    }
-   }
-
+               "selector": {
+                    "$or": [
+                                   {
+                                        "destination": destination
+                                   },
+                                   {
+                                        "cruiseName": cruiseName
+                                   },
+                                   {
+                                        "cruiseDur": cruiseDur
+                                   }
+                                ]
+        }
+      }
    cruiseDetailsDb.find(schema,function(err,result){
-       if(err) console.log(err);else console.log('cruise-Info:'+JSON.stringify(result.docs));
-      data = result.docs;
+       if(err) console.log(err);
+        console.log(JSON.stringify({mapData: req.session.mapData,filteredData:result.docs}));
+        res.render('AvailableCruise',{mapData: req.session.mapData,filteredData:result.docs});
    });
-//we cannot render a view in any post request so we need to redirect to another get request from there we can render a view...
-   res.redirect('/users/indexData');
  });  //end of index post...
-
-
-//render post request data
- router.get('/indexData',function(req,res){
-  res.render('AvailableCruise',{data: data});
- });
-
-
-
 router.get('/book-cruise',function(req,res){
 res.render('bookCruise');
+});
+
+router.get('/avalon-waterways',function(req,res){
+
+res.render('AvailableRooms');
+});
+
+router.get('/royal-carriebian',function(req,res){
+
+res.render('AvailableRooms');
 });
 
 

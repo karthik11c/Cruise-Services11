@@ -39,13 +39,13 @@
         </div>
       </div>
     </section>
-    
+
           <section class="ftco-section ftco-no-pb ftco-no-pt">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="search-wrap-1 ftco-animate p-4">
-              <form action="#" class="search-property-1">
+              <form action="/users/index" method="POST" class="search-property-1">
                 <div class="row">
                   <div class="col-lg align-items-end">
                     <div class="form-group">
@@ -53,22 +53,11 @@
                       <div class="form-field">
                         <div class="icon"><span class="icon-directions_boat"></span></div>
                         <!--<input type="text" class="form-control" placeholder="Hotel &amp; Restaurant">-->
-                                                              <select id="destination_result" class="form-control"  required>
+                      <select name="destination" id="destination_result" class="form-control"  required>
                           <option value="All Destination" >Destination</option>
-                            <option>Cochin</option>
-                            <option> Singapore</option>
-                            <option> Maldives</option>
-                            <option>Sri Lanka</option>
-                            <option> Dubai</option>
-                            <option>Kathmandu</option>
-                                    <option>Pallathurathy</option>
-                            <option>Sudarbans</option>
-                            <option>Jorhat</option>
-                            <option>Mumbai</option>
-                            <option>Bangladesh</option>
-                            <option>Goa</option>
-
-                            <option>Venice</option>
+                          <% for(var i=0 ; i < mapData.dePort.length ; i++){ %>
+                          <option > <%= mapData.dePort[i] %></option>
+                          <%}%>
 
                     </select>
 
@@ -82,26 +71,15 @@
                         <div class="icon"><span class="icon-directions_boat"></span></div>
                         <!--<input type="text" class="form-control checkin_date" placeholder="Check In Date">-->
 
-                               <select id="Depature Port" class="form-control"  required style="color:black">
-                          <option value="All Depature port" >Depature Port</option>
-                            <option>Cochin</option>
-                            <option> Singapore</option>
-                            <option> Maldives</option>
-                            <option>Sri Lanka</option>
-                            <option> Dubai</option>
-                            <option>Kathmandu</option>
-                                    <option>Pallathurathy</option>
-                            <option>Sudarbans</option>
-                            <option>Jorhat</option>
-                            <option>Mumbai</option>
-                            <option>Bangladesh</option>
-                            <option>Goa</option>
-
-                            <option>Venice</option>
+                               <select name="cruiseName" id="Depature Port" class="form-control"  required style="color:black">
+                          <option value="All Depature port" >Available Cruise</option>
+                          <% for(var i=0 ; i < mapData.cruises.length ; i++){ %>
+                          <option > <%= mapData.cruises[i] %></option>
+                          <%}%>
 
                     </select>
 
-                                        
+
                       </div>
                     </div>
                   </div>
@@ -110,7 +88,7 @@
                       <label for="#">Check-out date</label>
                       <div class="form-field">
                         <div class="icon"><span class="ion-ios-calendar"></span></div>
-                        <input type="text" class="form-control checkout_date" placeholder="Check Out Date" style="color:black">
+                        <input type="text" name="date" class="form-control checkout_date" placeholder="Check Out Date" style="color:black">
                       </div>
                     </div>
                   </div>
@@ -120,7 +98,7 @@
                       <div class="form-field">
                         <div class="select-wrap">
                           <div class="icon"><span class="icon-people"></span></div>
-                         <input type="number" class="form-control" placeholder="Num of Persons" min="1"/>
+                         <input type="number" name="numP" class="form-control" placeholder="Num of Persons" min="1"/>
                         </div>
                       </div>
                     </div>
@@ -139,20 +117,22 @@
         </div>
       </div>
     </section>
-  
+
 
 
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row d-flex">
-            
 
-               <div class="booking-form panel-body ftco-animate">
+<!-- for loop start -->
+<% for(var i=0 ; i < filteredData.length ; i++){ %>
+
+          <div class="booking-form panel-body ftco-animate">
 
             <h3 class="page-header heading">Costa Cruise Line</h3>
           <div class="row">
              <div class="col-lg-6">
-             <img class="block-20" src="/assets/images/costa_cruise.jpg" />
+             <img class="block-20" src=<%= filteredData[i].imgName %> />
             </div>
             <div class="col-lg-4 col-lg-offset-1 panel-body">
 
@@ -160,36 +140,36 @@
                     <tbody>
                         <tr>
                               <td>Cruise Line :</td>
-                                 <td> Costa line</td>
+                                 <td> <%= filteredData[i].cruiseName %></td>
                         </tr>
 
-                        
+
                         <tr>
                               <td>Ship Name :</td>
-                                 <td></td>
+                                 <td><%= filteredData[i].shipName %></td>
                         </tr>
 
-                        
+
                         <tr>
-                              <td>Sailing Name :Mumbai to Sri</td>
+                              <td>Sailing Name :<%=filteredData[i].sailName %></td>
                                  <td></td>
                         </tr>
 
-                        
+
                         <tr>
                               <td>Depature port :</td>
-                                 <td></td>
+                                 <td><%= filteredData[i].dePort %></td>
                         </tr>
 
-                        
+
                         <tr>
                               <td>Cruise Duration :</td>
-                                 <td></td>
+                                 <td><%= filteredData[i].cruiseDur %></td>
                         </tr>
-                        
+
                         <tr>
                               <td>Price:</td>
-                                 <td></td>
+                                 <td><%= filteredData[i].prices %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -198,87 +178,18 @@
                    <hr />
             <div class="container">
                 <p>
-                Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
+                 Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
                  look out at the soft ripples, the tall coconut trees and the changing colours of the sky as the
                  sun rises and sets.  </p>
-
-         
-                <a class="btn btn-primary" href="/users/avail-rooms" style="float:right;margin-right:100px;">Select</a>
+                <a class="btn btn-primary" href=<%= filteredData[i].redirectPath %> style="float:right;margin-right:100px;">Select</a>
             </div>
 
-           </div> 
-
-
-            
-                   <div class="booking-form panel-body ftco-animate" style="margin-top:50px">
-
-            <h3 class="page-header heading">Costa Cruise Line</h3>
-          <div class="row">
-             <div class="col-lg-6">
-             <img class="block-20" src="/assets/images/costa_cruise.jpg" />
-            </div>
-            <div class="col-lg-4 col-lg-offset-1 panel-body">
-
-                <table>
-                    <tbody>
-                        <tr>
-                              <td>Cruise Line :</td>
-                                 <td> Costa line</td>
-                        </tr>
-
-                        
-                        <tr>
-                              <td>Ship Name :</td>
-                                 <td></td>
-                        </tr>
-
-                        
-                        <tr>
-                              <td>Sailing Name :Mumbai to Sri</td>
-                                 <td></td>
-                        </tr>
-
-                        
-                        <tr>
-                              <td>Depature port :</td>
-                                 <td></td>
-                        </tr>
-
-                        
-                        <tr>
-                              <td>Cruise Duration :</td>
-                                 <td></td>
-                        </tr>
-                        
-                        <tr>
-                              <td>Price:</td>
-                                 <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
            </div>
-                   <hr />
-            <div class="container">
-                <p>
-                Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
-                 look out at the soft ripples, the tall coconut trees and the changing colours of the sky as the
-                 sun rises and sets.  </p>
-
-         
-                <a class="btn btn-primary" href="/users/avail-rooms" style="float:right;margin-right:100px;">Select</a>
-            </div>
-
-           </div> 
-
-
-            
-
-                </div>
-    
-          
+<!-- end of for loop...  -->
+           <%}%>
+        </div>
                 <div class="col-md-4 d-flex ftco-animate">
-            
+
           </div>
         </div>
           </div>
