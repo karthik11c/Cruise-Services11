@@ -116,7 +116,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
           }
           });
         }else {
-          res.render('index',req.session.mapData);
+          res.render('index',{'mapData':req.session.mapData});
         }
 }); //end of get request of index
 //user selected data needs to be send to server for filtering user results from database...
