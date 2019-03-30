@@ -15,6 +15,10 @@ var usersDb1 = process.env.usersDb;
 var regUsersDb1 = process.env.regUsersDb;
 var cruiseBookedUsersDb1 = process.env.cruiseBookedUsersDb;
 var cruiseDetailsDb1 = process.env.cruiseDetailsDb;
+var rooms_info1 = process.env.rooms_info;
+var dining_details1 = process.env.dining_details;
+
+
 //environment variaables...
 //cloudant URL
 var cloudantUrl = 'http://'+keys.dbHost+':'+keys.dbPort;
@@ -29,16 +33,19 @@ console.log('usersDb:'+usersDb1);
 console.log('regUsersDb:'+regUsersDb1);
 console.log('cruiseBookedUsersDb:'+cruiseBookedUsersDb1);
 console.log('cruiseDetailsDb:'+cruiseDetailsDb1);
+console.log('rooms_info:'+rooms_info1);
+console.log('dining_details1:'+dining_details1);
 
 const usersDb = nano.use(usersDb1);
 const regUsersDb = nano.use(regUsersDb1);
 const cruiseBookedUsersDb = nano.use(cruiseBookedUsersDb1);
 const cruiseDetailsDb = nano.use(cruiseDetailsDb1);
+const rooms_info = nano.use(rooms_info1);
+const dining_details = nano.use(dining_details1);
+
 
 console.log('usersDbconst:'+process.env.regUsersDb);
-
 // EJS
-
 app.use('/assets', express.static(__dirname + '/assets'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -47,7 +54,9 @@ module.exports = {
    usersDb: usersDb,
    cruiseBookedUsersDb:cruiseBookedUsersDb,
    regUsersDb:regUsersDb,
-   cruiseDetailsDb: cruiseDetailsDb
+   cruiseDetailsDb: cruiseDetailsDb,
+   rooms_info: rooms_info,
+   dining_details: dining_details
 };
 
 // app.use(express.urlencoded({ extended: true }));
