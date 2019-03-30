@@ -48,7 +48,7 @@ services:
    volumes:
      - ./Swagger/swagger-nodejs:/appDir/src
  jenkins:
-   image: jenup
+   image: jenkinswithdocker/jenkins-with-docker:lts
    ports:
      - 9000:8080
    volumes:

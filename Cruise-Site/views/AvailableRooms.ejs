@@ -208,19 +208,21 @@
             <section>
 
 
-<div class="col-md-12 container" id="scrl" style="overflow-y:scroll;height:700px" >
-                    <div class="booking-form col-lg-12  filter rooms">
+
+/*id="scrl" style="overflow-y:scroll;height:700px"*/
+	<div class="col-md-12 container id="scrl" style="overflow-y:scroll;height:700px"" >
+<% for(var i=0 ; i < roomsData.length ; i++){ %>
+                    <div class="booking-form col-lg-12 filter rooms">
                         <div class="row">
                     <div class="col-md-5 panel-body ">
                         <img src="/assets/images/Family%20rooms/FR3.jpg" class="img-thumbnail img-responsive" />
                     </div>
                     <div class="col-lg-5" align="center">
-
-                        <div class="page-header" id="rm">Double Bed room</div>
+                        <div class="page-header" id="rm">Double Bed room <%=   %></div>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>View :</td>
+                                    <td>View : </td>
                                     <td>Big Window</td>
                                 </tr>
                                 <tr>
@@ -250,7 +252,7 @@
                                 <tr>
                                     <td>Price Per Person:
                                     </td>
-                                    <td></td>
+                                    <td> roomsData.price </td>
                                 </tr>
 
                             </tbody>
@@ -322,10 +324,10 @@
                     </div>
                             </div>
                 </div>
+<%}%>
 
 
-
-
+<!--
       <div class="booking-form col-lg-12  filter FR">
                         <div class="row">
                     <div class="col-md-5 panel-body ">
@@ -391,9 +393,9 @@
 
                     </div>
                             </div>
-                </div>
+                </div> -->
 
-
+<!--
       <div class="booking-form col-lg-12  filter rooms">
                         <div class="row">
                     <div class="col-md-5 panel-body ">
@@ -459,7 +461,7 @@
 
                     </div>
                             </div>
-                </div>
+                </div> -->
 
 
                 <script type="text/javascript">

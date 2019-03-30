@@ -16,6 +16,9 @@ const Db = require('../app');
 //get all refrence to all databases from app.js
 var regUsersDb = Db.regUsersDb;
 var cruiseDetailsDb = Db.cruiseDetailsDb;
+var  rooms_info = Db.rooms_info;
+var  dining_details = Db.dining_details;
+
 
 //BodyParser load in the router...
 router.use(bodyParser.urlencoded({
@@ -27,8 +30,9 @@ router.use(bodyParser.json());
 
 //Global variables
 var data;
-var mapData={};
+let mapData={};
 let filteredData={};
+console.log('mapData:'+JSON.stringify(mapData));
 // 1. Login Page (login GET)
 router.get('/login', (req, res) => res.render('login'));
 
@@ -82,6 +86,8 @@ var cruises = [];
 var dePort = [];
 var cruiselengths = [];
 if(!req.session.mapData){
+
+  console.log('okk.........');
 cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, function(err, body) {
   if (!err) {
     body.rows.forEach(function(doc) {
@@ -97,8 +103,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
                body.rows.forEach(function(doc) {
                  cruiselengths.push(JSON.stringify(doc.key[0]).substr(1).slice(0, -1));
               });//body
-                   mapData = {'cruises': cruises,'dePort':dePort,'cruiseDur':cruiselengths};
-                   req.session.mapData = mapData;
+                   req.session.mapData = {'cruises': cruises,'dePort':dePort,'cruiseDur':cruiselengths};
                    res.render('index',{cruises: cruises,dePort:dePort,cruiseDur:cruiselengths});
               }//if
                else{
@@ -116,7 +121,9 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
           }
           });
         }else {
-          res.render('index',{'mapData':req.session.mapData});
+          console.log('session-map-data:'+JSON.stringify(req.session.mapData));
+          console.log('yeha....');
+          res.render('index',req.session.mapData);
         }
 }); //end of get request of index
 //user selected data needs to be send to server for filtering user results from database...
@@ -140,6 +147,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
       }
    cruiseDetailsDb.find(schema,function(err,result){
        if(err) console.log(err);
+          console.log('session-data: '+JSON.stringify(req.session.mapData));
         console.log(JSON.stringify({mapData: req.session.mapData,filteredData:result.docs}));
         res.render('AvailableCruise',{mapData: req.session.mapData,filteredData:result.docs});
    });
@@ -153,13 +161,27 @@ router.get('/avalon-waterways',function(req,res){
 res.render('AvailableRooms');
 });
 
+var roomsData;
 router.get('/royal-carriebian',function(req,res){
 
-res.render('AvailableRooms');
+ schema = {
+   'selector':{
+     'cruiseName': 'Royal Caribbean'
+ }
+}
+
+ rooms_info.find(schema,function(err,result){
+  if(err){
+    console.log('rooms-info db connection failed...');
+    res.send('Error-Cannot fetch Rooms Details...');
+  }
+  else {
+          console.log('rooms-data: '+JSON.stringify(result.docs));
+          roomsData = JSON.stringify(result);
+          res.render('AvailableRooms',{roomsData:roomsData});
+  }
 });
-
-
-
+});
 
 // Register Page post i.e user send his information to this post request...
 router.post('/register', (req, res) => {
