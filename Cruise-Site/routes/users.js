@@ -87,7 +87,7 @@ var dePort = [];
 var cruiselengths = [];
 if(!req.session.mapData){
 
-  console.log('okk.........');
+console.log('set cookie for available cruises...');
 cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, function(err, body) {
   if (!err) {
     body.rows.forEach(function(doc) {
@@ -122,7 +122,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
           });
         }else {
           console.log('session-map-data:'+JSON.stringify(req.session.mapData));
-          console.log('yeha....');
+          console.log('fetch cookie for available cruises...');
           res.render('index',req.session.mapData);
         }
 }); //end of get request of index
@@ -152,6 +152,9 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
         res.render('AvailableCruise',{mapData: req.session.mapData,filteredData:result.docs});
    });
  });  //end of index post...
+
+
+
 router.get('/book-cruise',function(req,res){
 res.render('bookCruise');
 });
@@ -161,12 +164,39 @@ router.get('/avalon-waterways',function(req,res){
 res.render('AvailableRooms');
 });
 
-var roomsData;
-router.get('/royal-carriebian',function(req,res){
 
+//1st Royal Carribian
+
+var roomsData;
+router.get('/2_night-royal-carriebian',function(req,res){
  schema = {
    'selector':{
-     'cruiseName': 'Royal Caribbean'
+     'cruiseName': 'Royal Caribbean',
+     'cruiseTitle': '2_night-royal-carribian'
+ }
+}
+//rooms-info.db
+// cruiseName & cruiseTitle roomTypes Views Price Capacity Available Seates booked ones
+ rooms_info.find(schema,function(err,result){
+  if(err){
+    console.log('rooms-info db connection failed...');
+    res.send('Error-Cannot fetch Rooms Details...');
+  }
+  else {
+          console.log('rooms-data: '+JSON.stringify(result.docs));
+          roomsData = JSON.stringify(result);
+          res.render('AvailableRooms',{roomsData:roomsData});
+          //AvailableRoomse.ejs displays dynamic data from rooms-info.db from selected cruise rooms.
+  }
+});
+});
+
+//2.Royal Carribian
+router.get('/5_night-royal-carriebian',function(req,res){
+ schema = {
+   'selector':{
+     'cruiseName': 'Royal Caribbean',
+     'cruiseTitle': '5_night-royal-carriebian'
  }
 }
 
@@ -183,7 +213,58 @@ router.get('/royal-carriebian',function(req,res){
 });
 });
 
+//3rd Royal Carribian
+router.get('/7_night-royal-carriebian',function(req,res){
+ schema = {
+   'selector':{
+     'cruiseName': 'Royal Caribbean',
+     'cruiseTitle': '7_night-royal-carriebian'
+ }
+}
+
+ rooms_info.find(schema,function(err,result){
+  if(err){
+    console.log('rooms-info db connection failed...');
+    res.send('Error-Cannot fetch Rooms Details...');
+  }
+  else {
+          console.log('rooms-data: '+JSON.stringify(result.docs));
+          roomsData = JSON.stringify(result);
+          res.render('AvailableRooms',{roomsData:roomsData});
+  }
+});
+});
+
+//4 Royal Carribian
+router.get('/15_night-royal-carriebian',function(req,res){
+ schema = {
+   'selector':{
+     'cruiseName': 'Royal Caribbean',
+     'cruiseTitle': '/15_night-royal-carriebian'
+ }
+}
+
+ rooms_info.find(schema,function(err,result){
+  if(err){
+    console.log('rooms-info db connection failed...');
+    res.send('Error-Cannot fetch Rooms Details...');
+  }
+  else {
+          console.log('rooms-data: '+JSON.stringify(result.docs));
+          roomsData = JSON.stringify(result);
+          res.render('AvailableRooms',{roomsData:roomsData});
+  }
+});
+});
+
+//same for costa and other remaining 16 cruises.. we can also make different js routes files for this...
+
+
 // Register Page post i.e user send his information to this post request...
+
+
+
+
 router.post('/register', (req, res) => {
 
   const { name, email, password, password2 } = req.body;
