@@ -1,5 +1,4 @@
-
-    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>-->
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
 <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
 
@@ -7,7 +6,7 @@
 <head>
 	<<title>Available Rooms</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" href="/assets//assets/images/cicon3.jpg" type="image/gif" sizes="16x16">
+	<link rel="icon" href="/assets/images/cicon3.jpg" type="image/gif" sizes="16x16">
 
 <% include divs/head %>
 
@@ -28,7 +27,7 @@
 				{
 						alert("please select rooms");
 				}
-
+       sessionStorage.setItem('cruiseName',roomsData.cruiseName);
 		}
 
 
@@ -36,6 +35,7 @@
                     {
 
                         var num=sessionStorage.getItem("total");
+												var name = "hello, world!";
 
                         {
                             document.querySelector('#myId').insertAdjacentHTML(
@@ -46,7 +46,7 @@
                           <h4>ROOM Name 1 is Added</h4>
                           <h5>Desk: <span></span> Adult: <span></span>Room:<span></span><h2>
                           <br>
-                          <h4>Prices :<span></span>&#8377;<h3>
+                          <h4>Prices : `+name+`<span></span>&#8377;<h3>
                           </div>
 
 
@@ -76,10 +76,6 @@
 
 </script>
 <script type="text/javascript">
-
-
-
-
 		function order()
 		{
 
@@ -129,14 +125,14 @@
 						var value = $(this).attr('data-filter');
 
 						if (value == "all") {
-								//$('.filter').removeClass('hidden');
-								$('.filter').show('1000');
+								$('.filter').removeClass('hidden');
+								$('.filter').show('10');
 						}
 						else {
-								//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-								//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+								            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+								            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
 								$(".filter").not('.' + value).hide('3000');
-								$('.filter').filter('.' + value).show('3000');
+								$('.filter').filter('.' + value).show('10');
 
 						}
 				});
@@ -170,10 +166,10 @@
             <div class="col-md-9">
             <div align="center" class="" style="width: 100%;margin-top:10%">
                 <button class="btn btn-link  filter-button" data-filter="all">All </button>
-                <button class="btn btn-link  filter-button" data-filter="rooms">Rooms</button>
-                <button class="btn btn-link filter-button" data-filter="FR">Family Rooms</button>
-                <button class="btn btn-link filter-button" data-filter="Luxury">Luxury Pods</button>
-                <button class="btn btn-link filter-button" data-filter="Dorms">Dorms</button>
+                <button class="btn btn-link  filter-button" data-filter="FR">Family Rooms</button>
+                <button class="btn btn-link filter-button" data-filter="Luxury">Luxury Rooms</button>
+                <button class="btn btn-link filter-button" data-filter="ownerSuite">Owner Suite</button>
+                <!-- <button class="btn btn-link filter-button" data-filter="PentHouse Suite">Dorms</button> -->
                       <script >
                           $(document).ready(function () {
 
@@ -182,12 +178,12 @@
                                   var value = $(this).attr('data-filter');
 
                                   if (value == "all") {
-                                      //$('.filter').removeClass('hidden');
+                                      $('.filter').removeClass('hidden');
                                       $('.filter').show('1000');
                                   }
                                   else {
-                                      //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-                                      //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+                                                  $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+                                                  $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
                                       $(".filter").not('.' + value).hide('3000');
                                       $('.filter').filter('.' + value).show('3000');
 
@@ -207,18 +203,19 @@
 
             <section>
 
+<!-- Root Tag -->
+<div class="col-md-12 container id="scrl" style="overflow-y:scroll;height:700px"" >
+	<!-- 1. Filter All Rooms   -->
+                  <div class="booking-form col-lg-12 filter all">
+										<% for(var i=0 ; i < roomsData.roomTypes.length ; i++){ %>
+											<% if(roomsData.roomTypes[i].roomtype != "family" && roomsData.roomTypes[i].roomtype != "luxury" && roomsData.roomTypes[i].roomtype != "owner suite" ){ %>
 
-
-/*id="scrl" style="overflow-y:scroll;height:700px"*/
-	<div class="col-md-12 container id="scrl" style="overflow-y:scroll;height:700px"" >
-<% for(var i=0 ; i < roomsData.length ; i++){ %>
-                    <div class="booking-form col-lg-12 filter rooms">
-                        <div class="row">
+										    <div class="row">
                     <div class="col-md-5 panel-body ">
-                        <img src="/assets/images/Family%20rooms/FR3.jpg" class="img-thumbnail img-responsive" />
+                        <img src="<%= roomsData.roomTypes[i].roomsimg %>" class="img-thumbnail img-responsive" />
                     </div>
                     <div class="col-lg-5" align="center">
-                        <div class="page-header" id="rm">Double Bed room <%=   %></div>
+                        <div class="page-header" id="rm">Double Bed room "<%= roomsData.roomTypes[i].roomsimg %>" length:  <%= roomsData.roomTypes.length %> </div>
                         <table>
                             <tbody>
                                 <tr>
@@ -237,39 +234,21 @@
                                     <td>Additional Bed:</td>
                                     <td>No</td>
                                 </tr>
-                                <tr>
-                                    <td>Select Deck:
-                                    </td>
-                                    <td>
-                                        <select>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Price Per Person:
-                                    </td>
-                                    <td> roomsData.price </td>
-                                </tr>
 
                             </tbody>
                         </table>
 
-
+<br>
                         <div class="row" style="background:#808080;color:white;font-size:25px">
                             <div class="d-sm-block col-md-4">
-                                <strong>$120</strong>
+                                <strong><%= roomsData.roomTypes[i].price %></strong>
 
                             </div>
                             <input type="number" min="1" class="form-control col-md-4" placeholder="No.Of Rooms" />
 
                             <button class="btn btn-primary col-md-4" onclick="order1()">ADD1</button>
 
-
-
+<!--
         <script>
                     function order1()
                     {
@@ -316,26 +295,27 @@
 
                 </script>
 
-
-                        </div>
+                        </div> -->
 
 
 
                     </div>
                             </div>
-                </div>
+<%}%>
 <%}%>
 
-
-<!--
+                </div>
+<!-- Filter Family Rooms  -->
       <div class="booking-form col-lg-12  filter FR">
+				<% for(var i=0; i < roomsData.roomTypes.length; i++){ %>
+					<% if(roomsData.roomTypes[i].roomtype == "family"){ %>
                         <div class="row">
                     <div class="col-md-5 panel-body ">
-                        <img src="/assets/images/Family%20rooms/FR2.jpg" class="img-thumbnail img-responsive" />
+                        <img src="<%= roomsData.roomTypes[i].roomsimg %>" class="img-thumbnail img-responsive" />
                     </div>
                     <div class="col-lg-5" align="center">
 
-                        <div class="page-header" id="Div1">Double Bed room</div>
+                        <div class="page-header text-description" id="Div1">Double Bed room "<%= roomsData.roomTypes[i].roomsimg %>" length:  <%= roomsData.roomTypes.length %></div>
                         <table>
                             <tbody>
                                 <tr>
@@ -354,116 +334,99 @@
                                     <td>Additional Bed:</td>
                                     <td>No</td>
                                 </tr>
-                                <tr>
-                                    <td>Select Deck:
-                                    </td>
-                                    <td>
-                                        <select>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Price Per Person:
-                                    </td>
-                                    <td></td>
-                                </tr>
-
                             </tbody>
                         </table>
 
-
+                          <br>
                         <div class="row" style="background:#808080;color:white;font-size:25px">
                             <div class="d-sm-block col-md-4">
-                                <strong>$120</strong>
+                                <strong><%= roomsData.roomTypes[i].price %></strong>
 
                             </div>
-                            <input type="number" min="1" class="form-control col-md-4" placeholder="No.Of Rooms" />
+                            <input type="number" min="1" class="form-control col-md-4 color="black" placeholder="No.Of Rooms" />
 
                             <button class="btn btn-primary col-md-4" onclick="order1()">ADD</button>
-
-
-
                         </div>
-
-
 
                     </div>
                             </div>
-                </div> -->
+                        <%}%>
+												<%}%>
+      </div>
+<!-- Filter Luxury Rooms -->
+<div class="booking-form col-lg-12  filter Luxury">
+  <%  for(var i=0; i< roomsData.roomTypes.length; i++){ %>
+    <% if(roomsData.roomTypes[i].roomtype == "luxury"){  %>
+                  <div class="row">
+              <div class="col-md-5 panel-body ">
+                  <img src="<%= roomsData.roomTypes[i].roomsimg %>" class="img-thumbnail img-responsive" />
+              </div>
+              <div class="col-lg-5" align="center">
+
+                  <div class="page-header" id="Div2">Double Bed room</div>
+                  <table>
+                      <tbody>
+                          <tr>
+                              <td>View :</td>
+                              <td>Big Window</td>
+                          </tr>
+                          <tr>
+                              <td>Capacity :</td>
+                              <td>2</td>
+                          </tr>
+                          <tr>
+                              <td>Washroom :</td>
+                              <td>Attached Washroom</td>
+                          </tr>
+                          <tr>
+                              <td>Additional Bed:</td>
+                              <td>No</td>
+                          </tr>
+                          <tr>
+                              <td>Select Deck:
+                              </td>
+                              <td>
+                                  <select>
+                                      <option>A</option>
+                                      <option>B</option>
+                                      <option>C</option>
+                                      <option>D</option>
+                                  </select>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>Price Per Person:
+                              </td>
+                              <td></td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+
+<br>
+                  <div class="row" style="background:#808080;color:white;font-size:25px">
+                      <div class="d-sm-block col-md-4">
+                          <strong><%= roomsData.roomTypes[i].price %></strong>
+
+                      </div>
+                      <input type="number" min="1" class="form-control col-md-4" placeholder="No.Of Rooms" />
+
+                      <button class="btn btn-primary col-md-4" onclick="order1()">ADD</button>
+
+
+
+                  </div>
+
+
+
+              </div>
+                      </div>
+                      <%}%>
+          <%}%>
+</div>
+
 
 <!--
-      <div class="booking-form col-lg-12  filter rooms">
-                        <div class="row">
-                    <div class="col-md-5 panel-body ">
-                        <img src="/assets/images/Family%20rooms/FR1.jpg" class="img-thumbnail img-responsive" />
-                    </div>
-                    <div class="col-lg-5" align="center">
-
-                        <div class="page-header" id="Div2">Double Bed room</div>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>View :</td>
-                                    <td>Big Window</td>
-                                </tr>
-                                <tr>
-                                    <td>Capacity :</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Washroom :</td>
-                                    <td>Attached Washroom</td>
-                                </tr>
-                                <tr>
-                                    <td>Additional Bed:</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Select Deck:
-                                    </td>
-                                    <td>
-                                        <select>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Price Per Person:
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-
-                        <div class="row" style="background:#e7e5e5;color:red;font-size:25px">
-                            <div class="d-sm-block col-md-4">
-                                <strong>$120</strong>
-
-                            </div>
-                            <input type="number" min="1" class="form-control col-md-4" placeholder="No.Of Rooms" />
-
-                            <button class="btn btn-primary col-md-4" onclick="order1()">ADD</button>
-
-
-
-                        </div>
-
-
-
-                    </div>
-                            </div>
-                </div> -->
-
-
                 <script type="text/javascript">
                     function order1()
                     {
@@ -509,7 +472,59 @@
 
 
 
-                </script>
+                </script> -->
+								<div class="booking-form col-lg-12  filter ownerSuite">
+								  <%  for(var i=0; i< roomsData.roomTypes.length; i++){ %>
+								    <% if(roomsData.roomTypes[i].roomtype == "owner suite"){  %>
+								                  <div class="row">
+								              <div class="col-md-5 panel-body ">
+								                  <img src="<%= roomsData.roomTypes[i].roomsimg %>" class="img-thumbnail img-responsive" />
+								              </div>
+								              <div class="col-lg-5" align="center">
+
+								                  <div class="page-header" id="Div2">Double Bed room</div>
+								                  <table>
+								                      <tbody>
+								                          <tr>
+								                              <td>View :</td>
+								                              <td>Big Window</td>
+								                          </tr>
+								                          <tr>
+								                              <td>Capacity :</td>
+								                              <td>2</td>
+								                          </tr>
+								                          <tr>
+								                              <td>Washroom :</td>
+								                              <td>Attached Washroom</td>
+								                          </tr>
+								                          <tr>
+								                              <td>Additional Bed:</td>
+								                              <td>No</td>
+								                          </tr>
+								                      </tbody>
+								                  </table>
+
+                                <br>
+								                  <div class="row" style="background:#808080;color:white;font-size:25px">
+								                      <div class="d-sm-block col-md-4">
+								                          <strong><%= roomsData.roomTypes[i].price %></strong>
+
+								                      </div>
+								                      <input type="number" min="1" class="form-control col-md-4" placeholder="No.Of Rooms" />
+
+								                      <button class="btn btn-primary col-md-4" onclick="order1()">ADD</button>
+
+
+
+								                  </div>
+
+
+
+								              </div>
+								                      </div>
+								                      <%}%>
+								          <%}%>
+								</div>
 
         </div>
 
@@ -529,8 +544,8 @@
                         <li>Then choose the number of rooms and click on "Add" button</li>
                     </ul>
                     <div class="col" id="myId">
-                    <a href="/users/customer-details" class="btn btn-primary" id="cb" onclick="validate()">Conform </a>
-                        </div>
+                    <a href="/users/cruiseViews" class="btn btn-primary" id="cb" onclick="validate()">Conform </a>
+                    </div>
            </div>
       </div>
     </section>

@@ -1,6 +1,3 @@
-
-
-
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,10 +21,6 @@
     </div>
 
     <% include divs/navbar %>
-
-
-
-
     <section class="hero-wrap hero-wrap-2 " style="background-image: url('/assets/images/247937.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -126,10 +119,11 @@
 
 <!-- for loop start -->
 <% for(var i=0 ; i < filteredData.length ; i++){ %>
-
+<form action="/users/all-cruises" method="post">
           <div class="booking-form panel-body ftco-animate">
 
-            <h3 class="page-header heading">Costa Cruise Line</h3>
+            <h3 name="cruiseTitle" class="page-header heading"><%= filteredData[i].cruiseTitle %></h3>
+            <input type="hidden" name="cruiseTitle" value="<%= filteredData[i].cruiseTitle %>" />
           <div class="row">
              <div class="col-lg-6">
              <img class="block-20" src=<%= filteredData[i].imgName %> />
@@ -140,13 +134,16 @@
                     <tbody>
                         <tr>
                               <td>Cruise Line :</td>
-                                 <td> <%= filteredData[i].cruiseName %></td>
+                                 <td name="dsd"><%= filteredData[i].cruiseName %>
+                                 <input type="hidden" name="cruiseName" value="<%= filteredData[i].cruiseName %>" />
+                                 </td>
                         </tr>
 
 
                         <tr>
                               <td>Ship Name :</td>
-                                 <td><%= filteredData[i].shipName %></td>
+                                 <td><%= filteredData[i].shipName %>
+                                 </td>
                         </tr>
 
 
@@ -181,11 +178,12 @@
                  Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
                  look out at the soft ripples, the tall coconut trees and the changing colours of the sky as the
                  sun rises and sets.  </p>
-                <a class="btn btn-primary" href=<%= filteredData[i].redirectPath %> style="float:right;margin-right:100px;">Select</a>
+                <button type="submit" class="btn btn-primary" style="float:right;margin-right:100px;">Select</button>
             </div>
 
            </div>
 <!-- end of for loop...  -->
+</form>
            <%}%>
         </div>
                 <div class="col-md-4 d-flex ftco-animate">
