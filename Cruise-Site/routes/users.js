@@ -165,16 +165,19 @@ res.render('AvailableRooms');
 });
 
 
-//1st Royal Carribian
-
+//all cruises filtering..
 var roomsData;
-router.get('/2_night-royal-carriebian',function(req,res){
+router.post('/all-cruises',function(req,res){
+  console.log('reqwithdata: '+JSON.stringify(req.body.cruiseName));
+  console.log('reqwithdata: '+JSON.stringify(req.body.cruiseTitle));
+
  schema = {
-   'selector':{
-     'cruiseName': 'Royal Caribbean',
-     'cruiseTitle': '2_night-royal-carribian'
- }
+  "selector": {
+      "cruiseName": req.body.cruiseName,
+      "cruiseTitle": req.body.cruiseTitle
+  }
 }
+console.log('schema: '+JSON.stringify(schema));
 //rooms-info.db
 // cruiseName & cruiseTitle roomTypes Views Price Capacity Available Seates booked ones
  rooms_info.find(schema,function(err,result){
@@ -183,88 +186,28 @@ router.get('/2_night-royal-carriebian',function(req,res){
     res.send('Error-Cannot fetch Rooms Details...');
   }
   else {
-          console.log('rooms-data: '+JSON.stringify(result.docs));
-          roomsData = JSON.stringify(result);
+          roomsData = result.docs[0];
+           if(roomsData=='[]')
+            {
+              console.log('data empty');
+            }else {
+              console.log('rooms-data length: '+result.docs[0].roomTypes.length);
+            }
           res.render('AvailableRooms',{roomsData:roomsData});
           //AvailableRoomse.ejs displays dynamic data from rooms-info.db from selected cruise rooms.
   }
 });
 });
 
-//2.Royal Carribian
-router.get('/5_night-royal-carriebian',function(req,res){
- schema = {
-   'selector':{
-     'cruiseName': 'Royal Caribbean',
-     'cruiseTitle': '5_night-royal-carriebian'
- }
-}
+router.get('/cruiseViews',function(req,res){
 
- rooms_info.find(schema,function(err,result){
-  if(err){
-    console.log('rooms-info db connection failed...');
-    res.send('Error-Cannot fetch Rooms Details...');
-  }
-  else {
-          console.log('rooms-data: '+JSON.stringify(result.docs));
-          roomsData = JSON.stringify(result);
-          res.render('AvailableRooms',{roomsData:roomsData});
-  }
+
+
+
+res.render('cruiseViews');
 });
-});
-
-//3rd Royal Carribian
-router.get('/7_night-royal-carriebian',function(req,res){
- schema = {
-   'selector':{
-     'cruiseName': 'Royal Caribbean',
-     'cruiseTitle': '7_night-royal-carriebian'
- }
-}
-
- rooms_info.find(schema,function(err,result){
-  if(err){
-    console.log('rooms-info db connection failed...');
-    res.send('Error-Cannot fetch Rooms Details...');
-  }
-  else {
-          console.log('rooms-data: '+JSON.stringify(result.docs));
-          roomsData = JSON.stringify(result);
-          res.render('AvailableRooms',{roomsData:roomsData});
-  }
-});
-});
-
-//4 Royal Carribian
-router.get('/15_night-royal-carriebian',function(req,res){
- schema = {
-   'selector':{
-     'cruiseName': 'Royal Caribbean',
-     'cruiseTitle': '/15_night-royal-carriebian'
- }
-}
-
- rooms_info.find(schema,function(err,result){
-  if(err){
-    console.log('rooms-info db connection failed...');
-    res.send('Error-Cannot fetch Rooms Details...');
-  }
-  else {
-          console.log('rooms-data: '+JSON.stringify(result.docs));
-          roomsData = JSON.stringify(result);
-          res.render('AvailableRooms',{roomsData:roomsData});
-  }
-});
-});
-
-//same for costa and other remaining 16 cruises.. we can also make different js routes files for this...
-
 
 // Register Page post i.e user send his information to this post request...
-
-
-
-
 router.post('/register', (req, res) => {
 
   const { name, email, password, password2 } = req.body;
