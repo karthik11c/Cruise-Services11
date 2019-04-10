@@ -11,7 +11,6 @@ module.exports = function(passport) {
                        "email": email
                     }
       }
-      var regUsersDb = Db.regUsersDb;
       regUsersDb.find(schema,function(err,result){
          if(err)
            throw err;

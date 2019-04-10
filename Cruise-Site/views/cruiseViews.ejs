@@ -93,7 +93,90 @@
 
 
 
+    <script>
+  // self executing function here
+  function viewCall() {
+  alert('okok');
+   for(var i=0; i < JSON.parse(sessionStorage.getItem('selectedRoomTypes')).length ; i++){
+     document.querySelector('#views').insertAdjacentHTML(
+       'afterbegin',
+      `
+      <div class="left-border-box">
+        <div class="decision-body">
+          <div id="ember346" class="ember-view"><div class="decision-point margin-top box">
+             <div class="decision-card">
+             <h3 class="visuallyhidden">
+               Inside
+             </h3>
+             <div class="image-left">
+               <figure data-media-type="image" data-lazy="true" data-late="false" data-src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg" data-alt="Inside" data-aspect-ratio="16-9" data-class="tile-media cabin-image" class="image aspect-ratio16-9 image-ratio"><img alt="Inside" class="tile-media cabin-image" src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg">
+                 <noscript><img src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg" alt="INSIDE" class="tile-media"></noscript>
+                 <span class="media-loader"><span aria-hidden="true" class="loader loader-primary loader-light loader-static loading"></span></span></figure>
+             </div>
+             <div class="card-body super-category-card">
+               <div class="card-description">
+                 <div aria-hidden="true" class="secondary-title">
+                   Inside
+                 </div>
+                 <div class="text-description margin-top-bottom super-category-description">
+                   Compact cabin located in the interior of the ship with no view.
+                 </div>
+               </div>
+                 <div class="decision-row">
+                   <div class="display-price-offers">
+                     <div class="small-description">
+                         from
+                     </div>
+                     <div class="price">
+                         <s aria-hidden="true">$688</s>
+                         <span class="visuallyhidden">Price was: $688 per person</span>
+                       <span aria-hidden="true" class="updated-price">$661</span>
+                       <span class="visuallyhidden">Price is: $661 per person</span>
+                       <div aria-hidden="true" class="small-description">
+                           <div id="ember347" class="ember-view">    per person*
+         </div>
+      </div>
+      <div id="ember352" class="ember-view">
+      <a id="promotionLink-INSIDE" href="javascript:void(0)" class="view-more-offers" data-ember-action="" data-ember-action-353="353">
+          <span></span>
+      </a>
 
+      <div class="hidden">
+        <div id="promotionModalContent-INSIDE" role="complementary" class="modal-body">
+          <div class="promotion-modal-title">
+            <div class="promotion-title">4 offers available!</div>
+            <button type="button" class="btn-close modal-close btn-primary" data-ember-action="" data-ember-action-354="354">
+              <span aria-hidden="true" class="icon icon-close"></span>
+              <span class="alt">Close</span>
+            </button>
+          </div>
+          <div class="promotion-disclaimer">Not all offers apply to all cabins</div>
+
+          <div class="promotions-list">
+      <!---->    </div>
+        </div>
+      </div></div>
+                  </div>
+                </div>
+                <div class="select-button super-category-button">
+
+                  <a href="javascript:void(0)" id="supercat-INSIDE" class="btn btn-secondary btn-action" data-ember-action="" data-ember-action-355="355">
+                    <span aria-hidden="true" class="btn-label">Select</span>
+                    <span class="visuallyhidden">
+                      Select Inside from $661 per person
+                    </span>
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div></div>
+        </div>
+      </div>
+  `);
+  };
+  };
+  </script>
 
 
             <script>   var uitkformatter = { dependency: ['uitk_localized_dateApi', 'uitk_localized_priceApi', 'uitk_localized_config'] }; </script><script async="" defer="" src="//www.expedia.com/i18n/1/en_US/USD/currencyFormats.js?module=exp_currencyformats_USD"></script><script>     define('exp_currencyformats', [                    'exp_currencyformats_USD'                ], function() {         return window.uitkformatter;       });   </script><script async="" defer="" src="//b.travel-assets.com/uitoolkit/2-212/02a686e46202fef2faf75eeac92d861d3cca5ac1/core/js/uitk-localize-bundle-min.js"></script>
@@ -203,7 +286,7 @@
 
 <script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/tiqapp/utag.currency.js?utv=ut4.39.201904081220" id="utag_expedia.main_147"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3029.js?utv=ut4.39.201902281229" id="utag_expedia.main_3029"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.26.js?utv=ut4.39.201811270652" id="utag_expedia.main_26"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.234.js?utv=ut4.39.201902251324" id="utag_expedia.main_234"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.253.js?utv=ut4.39.201902210449" id="utag_expedia.main_253"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.1337.js?utv=ut4.39.201811270652" id="utag_expedia.main_1337"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.1579.js?utv=ut4.39.201811270652" id="utag_expedia.main_1579"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.1721.js?utv=ut4.39.201903050855" id="utag_expedia.main_1721"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.1875.js?utv=ut4.39.201811270652" id="utag_expedia.main_1875"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2697.js?utv=ut4.39.201811280628" id="utag_expedia.main_2697"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2774.js?utv=ut4.39.201902281229" id="utag_expedia.main_2774"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2796.js?utv=ut4.39.201807111312" id="utag_expedia.main_2796"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2817.js?utv=ut4.39.201811270652" id="utag_expedia.main_2817"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2858.js?utv=ut4.39.201804230306" id="utag_expedia.main_2858"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2901.js?utv=ut4.39.201806210558" id="utag_expedia.main_2901"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2954.js?utv=ut4.39.201807111312" id="utag_expedia.main_2954"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2971.js?utv=ut4.39.201810110539" id="utag_expedia.main_2971"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2980.js?utv=ut4.39.201810110539" id="utag_expedia.main_2980"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.2983.js?utv=ut4.39.201811270652" id="utag_expedia.main_2983"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3003.js?utv=ut4.39.201807230606" id="utag_expedia.main_3003"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3004.js?utv=ut4.39.201808081054" id="utag_expedia.main_3004"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3087.js?utv=ut4.39.201811270652" id="utag_expedia.main_3087"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3143.js?utv=ut4.39.201903280435" id="utag_expedia.main_3143"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3158.js?utv=ut4.39.201904030905" id="utag_expedia.main_3158"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3251.js?utv=ut4.39.201904030905" id="utag_expedia.main_3251"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3252.js?utv=ut4.39.201904030905" id="utag_expedia.main_3252"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3255.js?utv=ut4.39.201904030905" id="utag_expedia.main_3255"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3275.js?utv=ut4.39.201811270652" id="utag_expedia.main_3275"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3276.js?utv=ut4.39.201811270652" id="utag_expedia.main_3276"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3277.js?utv=ut4.39.201811270652" id="utag_expedia.main_3277"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3278.js?utv=ut4.39.201811270652" id="utag_expedia.main_3278"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3281.js?utv=ut4.39.201811270652" id="utag_expedia.main_3281"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3282.js?utv=ut4.39.201811270652" id="utag_expedia.main_3282"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3283.js?utv=ut4.39.201811270652" id="utag_expedia.main_3283"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3285.js?utv=ut4.39.201811270652" id="utag_expedia.main_3285"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3286.js?utv=ut4.39.201811270652" id="utag_expedia.main_3286"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3287.js?utv=ut4.39.201811270652" id="utag_expedia.main_3287"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3288.js?utv=ut4.39.201811270652" id="utag_expedia.main_3288"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3368.js?utv=ut4.39.201811270652" id="utag_expedia.main_3368"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3383.js?utv=ut4.39.201902071005" id="utag_expedia.main_3383"></script><script type="text/javascript" async="" charset="utf-8" src="//tags.tiqcdn.com/utag/expedia/main/prod/utag.3408.js?utv=ut4.39.201902071005" id="utag_expedia.main_3408"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/976481089/?random=1554800931497&amp;cv=9&amp;fst=1554800931497&amp;num=1&amp;userId=55848d9d-c14d-4f24-83fb-da6ea2ac7ebe&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;data=page%3Dpage.Cruise.Cabin-Experience%3Bdomain_lob%3DCRUISE%3Bcheckoutdate%3D2019-11-02%3Bcheckindate%3D2019-10-26%3Bsite_brand%3DExpedia%3BDeviceType%3DDesktop%3Bpoint_of_sale%3Dwww.expedia.com%3Becomm_pagetype%3Dother%3Becomm_totalvalue%3D&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/980148457/?random=1554800931531&amp;cv=9&amp;fst=1554800931531&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;data=CruisePageName%3Dpage.Cruise.Cabin-Experience%3Bcruisetitle%3D7-night%20Mexico%20Cruise%20from%20Los%20Angeles%20(Roundtrip)%3Bcruiseline%3DPrincess%20Cruises%3Bcruisedestination%3DMexico%3Becomm_pagetype%3Dother%3Becomm_totalvalue%3D&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script type="text/javascript" src="https://c212.net/c/etag/?clientId=qfZkzCP9&amp;e1=1&amp;e2=1&amp;e3=0&amp;e4=0&amp;e5=0"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/813670643/?random=1554800931819&amp;cv=9&amp;fst=1554800931819&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/813670643/?random=1554800931821&amp;cv=9&amp;fst=1554800931821&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://www.googleadservices.com/pagead/conversion/813670643/?random=1554800931822&amp;cv=9&amp;fst=1554800931822&amp;num=1&amp;label=5PLfCJr6xX8Q88H-gwM&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dconversion&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/800330014/?random=1554800931830&amp;cv=9&amp;fst=1554800931830&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/818990999/?random=1554800931831&amp;cv=9&amp;fst=1554800931831&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/818990999/?random=1554800931833&amp;cv=9&amp;fst=1554800931833&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/786429470/?random=1554800931834&amp;cv=9&amp;fst=1554800931834&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/960835357/?random=1554800931835&amp;cv=9&amp;fst=1554800931835&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://www.googleadservices.com/pagead/conversion/960835357/?random=1554800931836&amp;cv=9&amp;fst=1554800931836&amp;num=1&amp;label=k8k8CMeaooUBEJ3elMoD&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dconversion&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/793244716/?random=1554800931843&amp;cv=9&amp;fst=1554800931843&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=330&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;gtm=2ou3r3&amp;sendb=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fwww.expedia.com%2FCruise-CabinCategory%3Fsailing-token%3DAQoCcGMSAnJwGICo86rgLSAHKgNsYXgyAnVzOgNsYXhCAnVz%26cabinType%3Dinside%26adultCount%3D3%26childCount%3D0&amp;ref=https%3A%2F%2Fwww.expedia.com%2FCruise-Search%3FadultCount%3D3%26destination%3Dmexico&amp;tiba=Cruise%20%7C%20Expedia&amp;async=1&amp;rfmt=3&amp;fmt=4"></script></head>
 
-    <body class="wrap cf layout-2col-b off-canvas inverse">
+    <body onload="viewCall();" class="wrap cf layout-2col-b off-canvas inverse">
 
 
 
@@ -823,90 +906,19 @@
         <h1 class="visuallyhidden">
             7 night Mexico cruise
         </h1>
-      <div id="ember340" class="ember-view"><div class="decision-header">
-    <span aria-hidden="true" class="oval step-current-oval">1</span>
-    <h2 aria-hidden="true" class="decision-title secondary-title step-current">
-      Pick your cabin experience
-    </h2>
-    <h2 class="visuallyhidden">
-      Step 1 Pick your cabin experience
-    </h2>
+        <div id="ember340" class="ember-view">
+          <div class="decision-header">
+      <span aria-hidden="true" class="oval step-current-oval">1</span>
+      <h2 aria-hidden="true" class="decision-title secondary-title step-current">
+        Pick your cabin experience
+      </h2>
+      <h2 class="visuallyhidden">
+        Step 1 Pick your cabin experience
+      </h2>
+  </div>
 </div>
-<div class="left-border-box">
-  <div class="decision-body ">
-<% for(var i=0; i < 3 ; i++){%>
-<div id="ember346" class="ember-view"><div class="decision-point margin-top box">
-  <div class="decision-card">
-    <h3 class="visuallyhidden">
-      Inside
-    </h3>
-    <div class="image-left">
-      <figure data-media-type="image" data-lazy="true" data-late="false" data-src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg" data-alt="Inside" data-aspect-ratio="16-9" data-class="tile-media cabin-image" class="image aspect-ratio16-9 image-ratio"><img alt="Inside" class="tile-media cabin-image" src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg">
-        <noscript><img src="https://s3-us-west-2.amazonaws.com/bex-cruise-media-p/derivative/1c792c98122608648eb38f17942d3075.jpeg" alt="INSIDE" class="tile-media"></noscript>
-        <span class="media-loader"><span aria-hidden="true" class="loader loader-primary loader-light loader-static loading"></span></span></figure>
-    </div>
-    <div class="card-body super-category-card">
-      <div class="card-description">
-        <div aria-hidden="true" class="secondary-title">
-          Inside
-        </div>
-        <div class="text-description margin-top-bottom super-category-description">
-          Compact cabin located in the interior of the ship with no view.
-        </div>
-      </div>
-        <div class="decision-row">
-          <div class="display-price-offers">
-            <div class="small-description">
-                from
-            </div>
-            <div class="price">
-                <s aria-hidden="true">$688</s>
-                <span class="visuallyhidden">Price was: $688 per person</span>
-              <span aria-hidden="true" class="updated-price">$661</span>
-              <span class="visuallyhidden">Price is: $661 per person</span>
-              <div aria-hidden="true" class="small-description">
-                  <div id="ember347" class="ember-view">    per person*
+<div id="views">
 </div>
-              </div>
-<!---->                <div id="ember352" class="ember-view">
-<a id="promotionLink-INSIDE" href="javascript:void(0)" class="view-more-offers" data-ember-action="" data-ember-action-353="353">
-    <span></span>
-</a>
-
-<div class="hidden">
-  <div id="promotionModalContent-INSIDE" role="complementary" class="modal-body">
-    <div class="promotion-modal-title">
-      <div class="promotion-title">4 offers available!</div>
-      <button type="button" class="btn-close modal-close btn-primary" data-ember-action="" data-ember-action-354="354">
-        <span aria-hidden="true" class="icon icon-close"></span>
-        <span class="alt">Close</span>
-      </button>
-    </div>
-    <div class="promotion-disclaimer">Not all offers apply to all cabins</div>
-
-    <div class="promotions-list">
-<!---->    </div>
-  </div>
-</div></div>
-            </div>
-          </div>
-          <div class="select-button super-category-button">
-
-            <a href="javascript:void(0)" id="supercat-INSIDE" class="btn btn-secondary btn-action" data-ember-action="" data-ember-action-355="355">
-              <span aria-hidden="true" class="btn-label">Select</span>
-              <span class="visuallyhidden">
-                Select Inside from $661 per person
-              </span>
-            </a>
-          </div>
-        </div>
-    </div>
-  </div>
-</div></div>
-<%}%>
-  </div>
-</div></div>
-
       <div id="ember372" class="ember-view"><div class="decision-header">
     <span aria-hidden="true" class="oval ">2</span>
     <h2 aria-hidden="true" class="decision-title ">
@@ -920,7 +932,7 @@
 <div class="left-border-box">
   <div class="decision-body">
     <div id="ember377" class="ember-view"><!----></div>
-<!---->  </div>
+ </div>
 </div></div>
 
       <div id="ember378" class="ember-view"><div class="decision-header">
