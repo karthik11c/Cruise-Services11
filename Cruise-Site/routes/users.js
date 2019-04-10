@@ -1,4 +1,3 @@
-//dependencies
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -10,15 +9,11 @@ var cookieParser = require('cookie-parser');
 router.use(cookieParser());
 router.use(session({secret: "Your secret key"}));
 
-// Get DataBase module from app.js
 const Db = require('../app');
-
-//get all refrence to all databases from app.js
 var regUsersDb = Db.regUsersDb;
 var cruiseDetailsDb = Db.cruiseDetailsDb;
 var  rooms_info = Db.rooms_info;
 var  dining_details = Db.dining_details;
-
 
 //BodyParser load in the router...
 router.use(bodyParser.urlencoded({
@@ -27,7 +22,6 @@ router.use(bodyParser.urlencoded({
 router.use(bodyParser.json());
 // HomePage...
 // router.get('/homepage', (req, res) => res.render('homepage'));
-
 //Global variables
 var data;
 let mapData={};
@@ -39,7 +33,6 @@ router.get('/login', (req, res) => res.render('login'));
 // router.get('/custDetail', (req, res) => res.render('register'));
 
 router.get('/register', (req, res) => res.render('register'));
-router.get('/BookingDetails', (req, res) => res.render('BookingDetails'));
 
 router.get('/about', (req, res) => res.render('AboutCruise'));
 router.get('/contact', (req, res) => res.render('contact'));
@@ -86,7 +79,6 @@ var cruises = [];
 var dePort = [];
 var cruiselengths = [];
 if(!req.session.mapData){
-
 console.log('set cookie for available cruises...');
 cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, function(err, body) {
   if (!err) {
@@ -199,11 +191,8 @@ console.log('schema: '+JSON.stringify(schema));
 });
 });
 
-router.get('/cruiseViews',function(req,res){
-
-
-
-
+router.post('/cruiseViews',function(req,res){
+console.log('cruiseViews-data: '+JSON.stringify(req.body));
 res.render('cruiseViews');
 });
 

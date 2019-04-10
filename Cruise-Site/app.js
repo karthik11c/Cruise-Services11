@@ -59,7 +59,7 @@ module.exports = {
    dining_details: dining_details
 };
 
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 // app.use(bodyParser.urlencoded({
 //     extended: true
 // }));
