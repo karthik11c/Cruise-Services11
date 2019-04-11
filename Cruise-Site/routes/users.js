@@ -191,10 +191,22 @@ console.log('schema: '+JSON.stringify(schema));
 });
 });
 
+
 router.post('/cruiseViews',function(req,res){
-console.log('cruiseViews-data: '+JSON.stringify(req.body));
-res.render('cruiseViews');
+  console.log('cruiseViews-data: '+JSON.stringify(req.body));
+  res.render('cruiseViews');
 });
+
+router.get('/Guest-Detail',function(req,res){
+
+res.render('GuestDetail');
+});
+
+router.get('/final-report',function(req,res){
+
+ res.render('FInal_report');
+});
+
 
 // Register Page post i.e user send his information to this post request...
 router.post('/register', (req, res) => {
