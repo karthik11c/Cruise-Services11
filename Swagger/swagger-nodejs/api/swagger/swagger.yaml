@@ -8,7 +8,6 @@ host: localhost:8000
 basePath: /
 #
 schemes:
-  # tip: remove http to make production-grade
   - http
   - https
 # format of bodies a client can send (Content-Type)
@@ -22,8 +21,6 @@ securityDefinitions:
     type: apiKey
     name: api_Key
     in: header
-    # scheme: bearer
-    # bearerFormat: JWT
 paths:
   /Login:
     # binds a127 app logic to a route
@@ -256,12 +253,12 @@ paths:
       tags:
         - Cruise-Info
       parameters:
-        - name: customer
+        - name: cruise
           required: true
           in: body
           description: Enter User Details with Old name also
           schema:
-            $ref: '#/definitions/UpdateUserInfoById'
+            $ref: '#/definitions/addCruise'
       security:
         - BearerAuth: []
       responses:
@@ -670,6 +667,48 @@ definitions:
         type: integer
       price:
         type: integer
+  addCruise:
+    required:
+      - cruiseId
+      - cruiseName
+      - cruiseTitle
+      - shipName
+      - sailName
+      - sailDate
+      - dePort
+      - portsOfCall
+      - cruiseDur
+      - cruiseType
+      - prices
+      - imgName
+      - redirectPath
+    properties:
+      cruiseId:
+        type: integer
+      cruiseName:
+        type: string
+      cruiseTitle:
+        type: string
+      shipName:
+        type: string
+      sailName:
+        type: string
+      sailDate:
+        type: string
+      dePort:
+        type: string
+      portsOfCall:
+        type: string
+      cruiseDur:
+        type: string
+      cruiseType:
+        type: string
+      prices:
+        type: string
+      imgName:
+        type: string
+      redirectPath:
+        type: string
 
   UpdateUserInfoByName:
     required:
