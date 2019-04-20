@@ -8,7 +8,7 @@ node{
          sh 'docker build -t swagger-nodejs $(pwd)/Swagger/swagger-nodejs'
 	    }
 	    stage('Check Builds'){
-	           sh 'docker images'
+	           sh 'docker image'
 	    }
       stage('Push Images to DOCKER-HUB'){
          docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
