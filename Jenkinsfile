@@ -5,10 +5,11 @@ node{
     	}
 	    stage('test shell'){
 	      echo "Its Working"
+	      pwd
 	    }
 	    stage('Build Images'){
-              sh 'docker build -t cruise-site $(pwd)/Cruise-Site'
-              sh 'docker build -t swagger-nodejs $(pwd)/Swagger/swagger-nodejs'
+              sh 'docker build -t cruise-site pwd/Cruise-Site'
+              sh 'docker build -t swagger-nodejs pwd/Swagger/swagger-nodejs'
 	    }
 	    stage('Check Builds'){
 	           sh 'docker images'
