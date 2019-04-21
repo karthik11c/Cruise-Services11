@@ -2,10 +2,7 @@ node{
   //  try{
     	stage('Check Repo'){
 	       checkout scm
-    	}
-	    stage('test shell'){
-	      echo "Its Working"
-	    }
+	}
 	    stage('Build Images'){
               sh 'docker-compose up'
 	    }
@@ -22,7 +19,7 @@ node{
            sh 'docker push karthik11c/swaggerui:lts'
 	 }
       }
-	     emailext body: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - $BUILD_STATUS:Check console output at $BUILD_URL to view the results.', recipientProviders: [developers()], subject: 'Build Successful... ', to: '${EMAIL}'
+//	     emailext body: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - $BUILD_STATUS:Check console output at $BUILD_URL to view the results.', recipientProviders: [developers()], subject: 'Build Successful... ', to: '${EMAIL}'
 //     }catch(err){
 //	     emailext body: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - $BUILD_STATUS:Check console output at $BUILD_URL to view the results.', recipientProviders: [developers()], subject: 'Build Failed... ', to: '${EMAIL}'
 //	   }
