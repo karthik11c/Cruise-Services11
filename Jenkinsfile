@@ -5,7 +5,7 @@ node{
     	}
 	    stage('test shell'){
 	      echo "Its Working"
-	      pwd
+	      echo $(pwd)
 	    }
 	    stage('Build Images'){
               sh 'docker build -t cruise-site $(pwd)/Cruise-Site'
