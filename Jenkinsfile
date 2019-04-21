@@ -4,7 +4,7 @@ node{
 	       checkout scm
     	}
 	    stage('Build Images'){
-         sh 'docker build -t cruise-site $(pwd)/Cruise-Site'
+         sh 'docker build -t cruise-site ./Cruise-Site'
          sh 'docker build -t swagger-nodejs $(pwd)/Swagger/swagger-nodejs'
 	    }
 	    stage('Check Builds'){
