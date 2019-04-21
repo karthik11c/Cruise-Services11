@@ -3,9 +3,12 @@ node{
     	stage('Check Repo'){
 	       checkout scm
     	}
+	    stage('test shell'){
+	      echo "Its Working"
+	    }
 	    stage('Build Images'){
-         C:/Program Files/Git/bin/sh 'docker build -t cruise-site $(pwd)/Cruise-Site'
-         sh 'docker build -t swagger-nodejs $(pwd)/Swagger/swagger-nodejs'
+              sh 'docker build -t cruise-site $(pwd)/Cruise-Site'
+              sh 'docker build -t swagger-nodejs $(pwd)/Swagger/swagger-nodejs'
 	    }
 	    stage('Check Builds'){
 	           sh 'docker images'
