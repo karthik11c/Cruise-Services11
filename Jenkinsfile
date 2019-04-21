@@ -4,7 +4,7 @@ node{
 	       checkout scm
 	}
 	stage('Build Images'){ 
-		    echo "docker-compose -f  " +$(pwd)+"/docker-compose.yml build'
+		    echo "docker-compose -f  " +$(pwd)+"/docker-compose.yml build"
 	    }
 	    stage('Check Builds'){
 	           sh 'docker images'
