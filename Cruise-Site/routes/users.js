@@ -142,10 +142,6 @@ router.get('/dining', (req, res) => res.render('dining'));
 router.get('/customer-details', (req, res) => res.render('custumerDetail'));
 
 
-router.get('/avail-cruise',function(req,res){
- res.render('bookCruise');
-});
-
 //6. Find Route
 // Find Route Search Button Click
 
