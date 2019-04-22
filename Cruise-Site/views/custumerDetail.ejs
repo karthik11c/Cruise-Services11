@@ -7,9 +7,8 @@
 <% include divs/head %>
  <script>
          function pageload(){
-          
+
               document.getElementById('tour').innerHTML=sessionStorage.getItem("source")+" TO "+sessionStorage.getItem("destination");
-                                      
               document.getElementById('date').innerHTML=sessionStorage.getItem("currentDate");
               document.getElementById('nP').innerHTML=sessionStorage.getItem("total");
               document.getElementById('roomName').innerHTML=sessionStorage.getItem("rName");
@@ -42,8 +41,8 @@
                         <div class="booking-form">
 
                             <h2> Booking Detail</h2>
-                            
-                            <div > 
+
+                            <div >
                                 <h4>Tour Detail</h4>
 
                                 <table>
@@ -62,11 +61,11 @@
                                             <td id="nP"></td>
 
                                         </tr>
-                                         
+
                                     </tbody>
-                                   
+
                                 </table>
-                                 <a href="AllCruises.html">Change Tour</a>
+                                 <a href="/users/all-cruises">Change Tour</a>
                                 <hr />
                                 <br />
                                 <h4>Room Detail</h4>
@@ -87,14 +86,14 @@
                                             <td id="roomPrice"></td>
 
                                         </tr>
-                                         
+
                                     </tbody>
 
                                    </table>
                                  <a href="BookingDetails.html">Change Room</a>
                                 <hr />
 
-                               
+
 
                                <h3>  <span> Grand Total: _________&#8377;</span></h3>
                             </div>
@@ -102,7 +101,7 @@
                             <span></span>
                             </div>
                     </div>
-                
+
           <div class="col-md-6 order-md-last d-flex">
             <form action="#" class="bg-light p-5 contact-form">
               <div class="form-group">
@@ -122,7 +121,7 @@
               <div class="form-group">
                 <textarea name="" id="" cols="20" rows="4" class="form-control" placeholder="Address" required></textarea>
               </div>
-             
+
 
                   <div class="row">
                                     <div class="col-sm-4">
@@ -151,15 +150,15 @@
                                     </div>
 
                                 </div>
-                   
+
                 <br />
                  <div class="form-group">
                 <!--<input type="submit" value="Save" class="btn btn-primary py-3 px-5">-->
                      <a href="/users/Guest-Detail" class="btn btn-primary py-3 px-5">Save</a>
               </div>
-           
+
             </form>
-          
+
           </div>
 
         </div>

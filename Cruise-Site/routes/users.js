@@ -139,8 +139,10 @@ router.get('/contact', (req, res) => res.render('contact'));
 router.get('/dining', (req, res) => res.render('dining'));
 
 
-router.get('/customer-details', (req, res) => res.render('custumerDetail'));
-
+router.post('/customer-details', function(req, res) {
+  console.log('filt:'+JSON.stringify(req.body.filteredData));
+  res.render('custumerDetail',{ roomsData: req.body.roomsData,filteredData:req.body.filteredData});
+});
 
 router.get('/avail-cruise',function(req,res){
  res.render('bookCruise');
@@ -254,10 +256,6 @@ router.get('/book-cruise',function(req,res){
 res.render('bookCruise');
 });
 
-router.get('/avalon-waterways',function(req,res){
-
-res.render('AvailableRooms');
-});
 
 
 //all cruises filtering..
@@ -288,7 +286,7 @@ console.log('schema: '+JSON.stringify(schema));
             }else {
               console.log('rooms-data length: '+result.docs[0].roomTypes.length);
             }
-          res.render('AvailableRooms',{roomsData:roomsData});
+          res.render('AvailableRooms',{roomsData:roomsData,filteredData:req.body.filteredData});
           //AvailableRoomse.ejs displays dynamic data from rooms-info.db from selected cruise rooms.
   }
 });

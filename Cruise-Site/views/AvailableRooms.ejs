@@ -559,7 +559,7 @@
       <div class="container " style="margin-top:10%">
 
 
-<form class="" action="/users/cruiseViews" method="post">
+<form class="" action="/users/customer-details" method="post">
 				<div class="row block-3">
             <ul class="panel-body ">
                         <li>We have rooms with capacities 1/2/4
@@ -576,7 +576,7 @@
 										<div class="col" id="myId">
      						       <button type="submit" name="button" class="btn btn-primary" id="cb" onclick="validate();">Conform</button>
                     <div class="col" id="totala">
-
+											<input type="hidden" name="filteredData" value= "<%= JSON.stringify(filteredData); %>"/>
                     </div>
 										</div>
            </div>
