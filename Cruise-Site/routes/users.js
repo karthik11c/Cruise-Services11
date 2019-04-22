@@ -144,10 +144,6 @@ router.post('/customer-details', function(req, res) {
   res.render('custumerDetail',{ roomsData: req.body.roomsData,filteredData:req.body.filteredData});
 });
 
-router.get('/avail-cruise',function(req,res){
- res.render('bookCruise');
-});
-
 //6. Find Route
 // Find Route Search Button Click
 

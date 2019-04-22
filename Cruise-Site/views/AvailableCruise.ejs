@@ -27,7 +27,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
             <h1 class="mb-3 bread">Available Cruises</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Cruises <i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/users/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Cruises <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
@@ -47,9 +47,9 @@
                         <div class="icon"><span class="icon-directions_boat"></span></div>
                         <!--<input type="text" class="form-control" placeholder="Hotel &amp; Restaurant">-->
                       <select name="destination" id="destination_result" class="form-control"  required>
-                          <option value="All Destination" >Destination</option>
+                          <option value="All Destination" style="color:black;" >Destination</option>
                           <% for(var i=0 ; i < mapData.dePort.length ; i++){ %>
-                          <option > <%= mapData.dePort[i] %></option>
+                          <option style="color:black;" > <%= mapData.dePort[i] %></option>
                           <%}%>
 
                     </select>
@@ -65,9 +65,9 @@
                         <!--<input type="text" class="form-control checkin_date" placeholder="Check In Date">-->
 
                                <select name="cruiseName" id="Depature Port" class="form-control"  required style="color:black">
-                          <option value="All Depature port" >Available Cruise</option>
+                          <option value="All Depature port" style="color:black;" >Available Cruise</option>
                           <% for(var i=0 ; i < mapData.cruises.length ; i++){ %>
-                          <option > <%= mapData.cruises[i] %></option>
+                          <option style="color:black;" > <%= mapData.cruises[i] %></option>
                           <%}%>
 
                     </select>
@@ -130,7 +130,7 @@
             </div>
             <div class="col-lg-4 col-lg-offset-1 panel-body">
 
-                <table>
+                <table style="color:black;">
                     <tbody>
                         <tr>
                               <td>Cruise Line :</td>
@@ -174,7 +174,7 @@
             </div>
            </div>
                    <hr />
-            <div class="container">
+            <div class="container" style="color:black;">
                 <p>
                  Experience life on a cruise across Alleppey's calm waters. Sit back, sip your drink and
                  look out at the soft ripples, the tall coconut trees and the changing colours of the sky as the
