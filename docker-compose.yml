@@ -49,5 +49,3 @@ services:
      - ./Swagger/swagger-nodejs:/appDir/src
 volumes:
  cloudant-data:
-# jenkins-data:
-# jenkins-conf:
