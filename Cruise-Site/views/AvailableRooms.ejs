@@ -37,12 +37,12 @@
 				document.querySelector('#myId').insertAdjacentHTML(
 'afterbegin',
 `<div class="row">
-			<div class="booking-cta container">
+			<div class="booking-cta container" style="font-size:20px;">
 					 <div class="row">
-			<h4>ROOM Name 1 is Added</h4>
-			<h5>Desk: <span></span> Adult: <span></span>Room:<span></span><h2>
+			<p>ROOM 1 is Added</p>
+			<p>Desk: <span></span> Adult: <span></span>Room:<span></span></p>
 			<br>
-			<h4>Prices :<span></span>&#8377;<h3>
+			<span>Prices :<span></span>&#8377;</span>
 			</div>
 							 <input type="button" style="background:#f84848" value="Cancel" onclick="removeRow(this)">
 
@@ -284,15 +284,19 @@
 														`<div class="row">
 																		<div class="container">
 																				 <div class="row">
-																		<h4>ROOM Name 1 is Added</h4>
-																		<h5>Desk: <span></span> Adult: <span></span>Room:<span></span><h2>
+																		<h6>ROOM Name 1 is Added</h6>
+																		<h6>Desk: <span></span> Adult: <span></span>Room:<span></span></h6>
 																		<br>
-																		<h4>Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;<h3>
+																		<h6> Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;</h5>
 																		</div>
 
 
-																						 <input type="button" style="background:#f84848;color:white;width:200px;" value="Cancel" onclick="removeRow(this)">
+																 <input type="button" style="background:#f84848;color:white;width:100px;" value="Cancel" onclick="removeRow(this)">
 					<br>
+
+					</br>
+				</br>
+					
 																		 </div>
 											<hr>
 
@@ -397,6 +401,8 @@
 															sessionStorage.setItem("selectedRoomTypes",JSON.stringify(selectedRoomTypes));
 															// alert("found=0 new sessionstore");
 														}
+
+
 													}else{
 														 sessionStorage.removeItem("selectedRoomTypes");
 														 selectedRoomTypes.push("luxury");
@@ -408,15 +414,17 @@
 											`<div class="row">
 															<div class="container">
 																	 <div class="row">
-															<h4>ROOM Name 1 is Added</h4>
-															<h5>Desk: <span></span> Adult: <span></span>Room:<span></span><h2>
+															<h6>ROOM Name 1 is Added</h6>
+															<h6>Desk: <span></span> Adult: <span></span>Room:<span></span></h6>
 															<br>
-															<h4>Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;<h3>
+															<h6>Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;</h6>
 															</div>
 
 
-																			 <input type="button" style="background:#f84848;color:white;width:200px;" value="Cancel" onclick="removeRow(this)">
-		<br>
+																			 <input type="button" style="background:#f84848;color:white;width:100px;" value="Cancel" onclick="removeRow(this)">
+		<br></br>
+	</br>
+					
 															 </div>
 								<hr>
 
@@ -517,13 +525,15 @@
 								 											`<div class="row">
 								 															<div class="container">
 								 																	 <div class="row">
-								 															<h4>ROOM Name 1 is Added</h4>
-								 															<h5>Desk: <span></span> Adult: <span></span>Room:<span></span><h2>
-								 															<br>
-								 															<h4>Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;<h3>
-								 															</div>
-								 																			 <input type="button" style="background:#f84848;color:white;width:200px;" value="Cancel" onclick="removeRow(this)">
-								 		<br>
+																										<h6>ROOM Name 1 is Added</h6>
+															<h6>Desk: <span></span> Adult: <span></span>Room:<span></span></h6>
+															<br>
+															<h6>Prices : `+ <%= roomsData.roomTypes[i].price %> +`<span></span>&#8377;</h6>
+															</div>
+								 <input type="button" style="background:#f84848;color:white;width:100px;" value="Cancel" onclick="removeRow(this)">
+								 		<br></br>
+									</br>
+					
 								 															 </div>
 								 								<hr>
 
@@ -535,7 +545,7 @@
 
 								 														}
 																						function removeRow(input) {
-																								alert('okok');
+																								alert('Your Room is cancelled');
 																								input.parentNode.remove();
 																						}
 
