@@ -11,9 +11,9 @@ node{
 	    }
       stage('Push Images to DOCKER-HUB'){
          docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
-           sh 'docker tag cruise-services_uinodejs karthik11c/cruise-site:lts'
-           sh 'docker tag cruise-services_swaggernodejs karthik11c/swagger-nodejs:lts'
-           sh 'docker tag cruise-services_swaggerui karthik11c/swaggerui:lts'
+           sh 'docker tag cruise-service_uinodejs karthik11c/cruise-site:lts'
+           sh 'docker tag cruise-service_swaggernodejs karthik11c/swagger-nodejs:lts'
+           sh 'docker tag cruise-service_swaggerui karthik11c/swaggerui:lts'
            sh 'docker push karthik11c/cruise-site:lts'   
 	   sh 'docker push karthik11c/swagger-nodejs:lts'
            sh 'docker push karthik11c/swaggerui:lts'
