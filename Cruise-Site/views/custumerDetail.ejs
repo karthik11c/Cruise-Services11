@@ -2,7 +2,6 @@
 <head>
     <title>Customer details | Cruise Booking</title>
 
-
     <link type="text/css" rel="" href="/assets/JS/Country_state.js" />
     <script src="/assets/JS/Country_state.js"></script>
 
@@ -10,24 +9,61 @@
     <link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 
 <% include divs/head %>
- <script>
+    <script>
          function pageload(){
+           alert("cruiseName:"+sessionStorage.getItem("selectedRoomTypes"));
 
+              document.getElementById("dprice").innerHTML = parseInt(sessionStorage.getItem("price"),10);
               document.getElementById('tour').innerHTML=sessionStorage.getItem("source")+" TO "+sessionStorage.getItem("destination");
               document.getElementById('date').innerHTML=sessionStorage.getItem("currentDate");
               document.getElementById('nP').innerHTML=sessionStorage.getItem("total");
-              document.getElementById('roomName').innerHTML=sessionStorage.getItem("rName");
-          }
+              // document.getElementById('roomName').innerHTML=sessionStorage.getItem("rName");
+              var selectedRoomTypes = [];
 
+               // alert(selectedRoomTypes);
+              <% for(var i=0; i< roomsData.roomTypes.length ; i++){%>
+                       selectedRoomTypes = JSON.parse(sessionStorage.getItem("selectedRoomTypes"));
+                       selectedRoomTypes.forEach(function (item) {
+                       // alert(item);
 
+                       if(item ==  "<%= roomsData.roomTypes[i].roomtype %>"){
+                         document.querySelector('#roomdata').insertAdjacentHTML(
+                  'afterbegin',
+                  `<table>
+                      <tbody>
+                          <tr>
+                              <td>Room :</td>
+                              <td id="roomName">`+ "<%= roomsData.roomTypes[i].roomtype %>" +`</td>
+                          </tr>
 
+                           <tr>
+                              <td>capacity :</td>
+                               <td id="capacity">`+<%= roomsData.roomTypes[i].capacity %> +`</td>
+                          </tr>
+                           <tr>
+                              <td>Price:</td>
+                              <td id="roomPrice">`+ <%= roomsData.roomTypes[i].price %> +`</td>
+                          </tr>
+
+                      </tbody>
+
+                     </table>
+                `);
+                }
+             });
+
+              <%}%>
+        }
+
+       function clearPrice(){
+         sessionStorage.removeItem("price");
+       }
       </script>
-
 
 	    </head>
 
 
-      <body onload="pageload()" class="bg-light">
+      <body onload="pageload();" class="bg-light">
 
            <div id="loading">
 
@@ -70,37 +106,52 @@
                                     </tbody>
 
                                 </table>
-                                 <a href="/users/all-cruises">Change Tour</a>
+                                 <form class="" action="/users/index" method="post">
+                                     <input type="hidden" name="destination" id="dest" />
+                                     <input type="hidden" name="cruiseName" id="cname" />
+                                     <input type="hidden" name="cruiseDur" id="cdur" />
+
+                                    <script> var destination = sessionStorage.getItem("destination")
+                                             var cruiseName = sessionStorage.getItem("cruiseName");
+                                             var cruiseDur = sessionStorage.getItem("cruiseDur");
+
+                                      document.getElementById("dest").value = destination;
+                                      document.getElementById("cname").value = cruiseName;
+                                      document.getElementById("cdur").value = cruiseDur;
+
+                                    </script>
+
+                                   <!-- <a href="/users/all-cruises">Change Tour</a> -->
+
+                                   <button type="submit" class="btn btn-link" name="button" onclick="clearPrice();">Change Tour</button>
+
+                                 </form>
+
                                 <hr />
                                 <br />
                                 <h4>Room Detail</h4>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Room :</td>
-                                            <td id="roomName"></td>
-                                        </tr>
+                               <div id=roomdata>
 
-                                         <tr>
-                                            <td>capacity :</td>
-                                            <td id="capacity"></td>
-                                        </tr>
-                                         <tr>
-                                            <td>Price:</td>
-                                            <td id="roomPrice"></td>
+                               </div>
+                                                                   <form class="" action="/users/all-cruises" method="post">
+                                       <input type="hidden" name="cruiseName" id="cname2" />
+                                       <input type="hidden" name="cruiseTitle" id="ctitle" />
+                                       <script>
+                                                var cruiseTitle = sessionStorage.getItem("cruiseTitle")
+                                                var cruiseName = sessionStorage.getItem("cruiseName");
 
-                                        </tr>
+                                         document.getElementById("cname2").value = cruiseName;
+                                         document.getElementById("ctitle").value = cruiseTitle;
+                                       </script>
 
-                                    </tbody>
 
-                                   </table>
-                                 <a href="BookingDetails.html">Change Room</a>
+                                         <button type="submit" class="btn btn-link" name="button" onlick="clearPrice();">Change Room</button>
+                                  </form>
                                 <hr />
 
 
-
-                               <h3>  <span> Grand Total: _________&#8377;</span></h3>
+                               <h3>  <span> Grand Total: <p id="dprice"></p></span>&#8377;</h3>
                             </div>
                             <span class=""> </span>
                             <span></span>
@@ -108,23 +159,23 @@
                     </div>
 
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-5 contact-form">
+            <form action="/users/Guest-Detail" method="post" class="bg-light p-5 contact-form">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name" required>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email" required>
+                <input type="email" class="form-control" name="Email" placeholder="Your Email" required>
               </div>
                 <div class="row">
               <div class="form-group col-md-6">
-                <input class="form-control" type="text"  pattern="[789][0-9]{9}" maxlength="10"  placeholder="Enter a Mobile number" id="mob"  required/>
+                <input class="form-control" type="text"  name="Mob" pattern="[789][0-9]{9}" maxlength="10"  placeholder="Enter a Mobile number" id="mob"  required/>
               </div>
                   <div class="form-group col-md-6">
-                <input type="date" class="form-control" placeholder="DOB" required>
+                <input type="date" class="form-control" name="DOB" placeholder="DOB" required>
               </div>
             </div>
               <div class="form-group">
-                <textarea name="" id="" cols="20" rows="4" class="form-control" placeholder="Address" required></textarea>
+                <textarea name="" id="" cols="20" rows="4" name="Address" class="form-control" placeholder="Address" required></textarea>
               </div>
 
 
@@ -159,9 +210,8 @@
                 <br />
                  <div class="form-group">
                 <!--<input type="submit" value="Save" class="btn btn-primary py-3 px-5">-->
-                     <a href="/users/Guest-Detail" class="btn btn-primary py-3 px-5">Save</a>
               </div>
-
+              <button type="submit" class="btn btn-primary py-3 px-5">Save</button>
             </form>
 
           </div>

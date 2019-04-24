@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
+
 router.use(cookieParser());
 router.use(session({secret: "Your secret key"}));
 
@@ -14,6 +15,7 @@ var regUsersDb = Db.regUsersDb;
 var cruiseDetailsDb = Db.cruiseDetailsDb;
 var  rooms_info = Db.rooms_info;
 var  dining_details = Db.dining_details;
+var cruiseBookedUsersDb = Db.cruiseBookedUsersDb;
 
 //BodyParser load in the router...
 router.use(bodyParser.urlencoded({
@@ -140,8 +142,8 @@ router.get('/dining', (req, res) => res.render('dining'));
 
 
 router.post('/customer-details', function(req, res) {
-  console.log('filt:'+JSON.stringify(req.body.filteredData));
-  res.render('custumerDetail',{ roomsData: req.body.roomsData,filteredData:req.body.filteredData});
+  // console.log('cd:\n'+JSON.stringify(JSON.parse(req.body.roomsData)));
+  res.render('custumerDetail',{roomsData: JSON.parse(req.body.roomsData)});
 });
 
 //6. Find Route
@@ -223,6 +225,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
  router.post('/index',function(req, res){
  console.log('This is req :'+JSON.stringify(req.body));
  const { destination, cruiseName, cruiseDur } = req.body;
+ console.log('cruiseNamell:'+cruiseName);
    var schema = {
                "selector": {
                     "$or": [
@@ -242,7 +245,7 @@ cruiseDetailsDb.view('sort', 'cruiseNames',{'reduce':'true','group_level':'1'}, 
        if(err) console.log(err);
           console.log('session-data: '+JSON.stringify(req.session.mapData));
         console.log(JSON.stringify({mapData: req.session.mapData,filteredData:result.docs}));
-        res.render('AvailableCruise',{mapData: req.session.mapData,filteredData:result.docs});
+        res.render('AvailableCruise',{mapData: req.session.mapData,filteredData:result.docs,destination:destination,cruiseName:cruiseName,cruiseDur:cruiseDur});
    });
  });  //end of index post...
 
@@ -282,7 +285,7 @@ console.log('schema: '+JSON.stringify(schema));
             }else {
               console.log('rooms-data length: '+result.docs[0].roomTypes.length);
             }
-          res.render('AvailableRooms',{roomsData:roomsData,filteredData:req.body.filteredData});
+          res.render('AvailableRooms',{roomsData:roomsData});
           //AvailableRoomse.ejs displays dynamic data from rooms-info.db from selected cruise rooms.
   }
 });
@@ -294,21 +297,57 @@ router.post('/cruiseViews',function(req,res){
   res.render('cruiseViews');
 });
 
-router.get('/Guest-Detail',function(req,res){
-
-res.render('GuestDetail');
+router.post('/Guest-Detail',function(req,res){
+console.log('Main Person Details :\n  '+JSON.stringify(req.body));
+res.render('GuestDetail',{ mperson : req.body } );
 });
 
-router.get('/final-report',function(req,res){
+router.post('/final-report',function(req,res){
+  //insert all user data into db if payment successfull...
+//
+// schema = {
+//
+//  "Main Person Details":{
+//    "Name": req.body.firstname,
+//    "Email": req.body.email,
+//    "Mob" : "",
+//    "DOB": "",
+//    "Country": "",
+//    "State" : req.body.state,
+//    "City": req.body.city
+//  },
+//  "Guest Person Details": {
+//   "Name" : "",
+//   "mob" : "",
+//   "Age" : ,
+//   "Gender"; "",
+//   "Id" : ""
+// },
+// "cruiseName": "",
+// "Departure Date": "",
+// "cruise Dur": "",
+// "roomTypes": "",
+// "total Amount": ""
+// }
+cruiseBookedUsersDb.insert(req.body,function(err,result){
+if(err){
+  throw err;
+}else{
+  console.log('successfully inserted...'+JSON.stringify(result.docs));
 
- res.render('FInal_report');
+}
 });
+  console.log('all user data: \n'+JSON.stringify(req.body));
+ // console.log("pdt:"+req.body.(JSON.parse(pdetails.mPerson).state));
+ res.render('FInal_report',{ data: req.body});
+
+ });
 
 //payment gateway
-router.get('/payment',function(req,res){
- res.render('checkout');
+router.post('/payment',function(req,res){
+ console.log("guest-details:"+JSON.stringify(req.body));
+ res.render('checkout',{pdetails : req.body});
 });
-
 
 // Logout
 router.get('/logout', (req, res) => {

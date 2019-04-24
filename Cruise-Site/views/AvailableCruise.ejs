@@ -7,12 +7,15 @@
   <% include divs/head %>
     <script>
         function preload() {
+          // alert("dest:<%= cruiseDur %>");
 
+          sessionStorage.setItem("destination","<%= destination %>");
+          sessionStorage.setItem("cruiseName","<%= cruiseName %>");
+          sessionStorage.setItem("cruiseDur","<%= cruiseDur %>");
 
             var preld = document.getElementById('loading');
             preld.style.display = 'none';
         }
-
     </script>
 </head>
 <body onload="preload()">
@@ -143,7 +146,6 @@
                         <tr>
                               <td>Ship Name :</td>
                                  <td><%= filteredData[i].shipName %>
-                                   <input type="hidden" name="filteredData" value="<%= filteredData %>" />
                                  </td>
                         </tr>
 
