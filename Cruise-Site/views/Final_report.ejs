@@ -2,7 +2,7 @@
     <title></title>
 
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
+
 
 
 <% include divs/head %>
@@ -10,12 +10,12 @@
 
     <script>
         function printContent() {
-            
+
             var restorepage = document.body.innerHTML;
-            
-            
+
+
             var printcontent = document.getElementById('div1').innerHTML;
-           
+
             document.body.innerHTML = printcontent;
             window.print();
             document.body.innerHTML = restorepage;
@@ -24,12 +24,65 @@
 
         function preloader()
         {
-
             document.getElementById('tour').innerHTML = sessionStorage.getItem("source") + " TO " + sessionStorage.getItem("destination");
 
             document.getElementById('date').innerHTML = sessionStorage.getItem("currentDate");
             document.getElementById('nP').innerHTML = sessionStorage.getItem("total");
             document.getElementById('roomName').innerHTML = sessionStorage.getItem("rName");
+
+           // document.getElementById("pd").innerHTML =
+          var gname = JSON.stringify(sessionStorage.getItem("gName"));
+          var mNo = JSON.stringify(sessionStorage.getItem("mNo"));
+          var age = JSON.stringify(sessionStorage.getItem("age"));
+          var gender = JSON.stringify(sessionStorage.getItem("gender"));
+          var id = JSON.stringify(sessionStorage.getItem("id"));
+
+          alert();
+          var name = gname.split(",");
+          var mNo = mNo.split(",");
+          var age = age.split(",");
+          var gender = gender.split(",");
+          var id = id.split(",");
+
+          var j = 2;
+             for(var i=0;i<name.length;i++){
+               document.querySelector('#pd').insertAdjacentHTML(
+               // alert(array.length);
+               'afterend',
+               `                            <h3 class="panel-heading">Passenger `+(j+i)+`</h3>
+                                      <div class="panel" style="margin-left:80px;text-align:justify;">
+                                      <div class="row">
+                                             <span>Name &nbsp :  `+name[i]+` </span>
+                                              <span> &nbsp &nbsp |&nbsp Mobile :  `+mNo[i]+`</span>
+                                      </div>
+                                      <div class="row">
+                                             <span>Age : `+age[i]+`  </span>
+                                          <span> &nbsp&nbsp | &nbsp&nbsp Gender : `+gender+`</span>
+                                      </div>
+                                      </div>
+              `
+                    );
+                  }
+// main Person
+
+document.querySelector('#mp').insertAdjacentHTML(
+'afterbegin',
+`
+                  <h3 class="panel-heading">Passenger 1</h3>
+                  <div class="panel" style="margin-left:80px;text-align:justify">
+                  <div class="row">
+                         <span>Name &nbsp :  `+sessionStorage.getItem('Name')+` </span>
+                          <span> &nbsp &nbsp |&nbsp Mobile :  `+sessionStorage.getItem('Mob')+`</span>
+                  </div>
+                  <div class="row">
+                         <span>Age : `+sessionStorage.getItem('Age')+`  </span>
+                      <span> &nbsp&nbsp | &nbsp&nbsp Gender : `+sessionStorage.getItem('gender')+`</span>
+                  </div>
+                  </div>
+
+`
+);
+
         }
 
 </script>
@@ -41,51 +94,30 @@
 <% include divs/navbar %>
 
 
-      
+
     <div class="ftco-section contact-section">
 
         <div class="row block-9">
-            
+
             <div class="col-lg-6 container">
 
                 <div class="booking-form" id="div1">
 
-                    <div>
-                            <h3 class="panel-heading">Passenger 1</h3>
-                            <div class="panel" style="margin-left:80px;text-align:justify;">
-                            <div class="row">
-                                   <span>Name &nbsp :  ABC </span>
-                                    <span> &nbsp &nbsp |&nbsp Mobile :  +91-987654321</span>
-                            </div>
-                            <div class="row">
-                                   <span>Age : 21  </span>
-                                <span> &nbsp&nbsp | &nbsp&nbsp Gender : M</span>
-                            </div>
-                            </div>
-                    </div>
+                    <div id="mp">
 
-                    <div>
-                            <h3 class="panel-heading">Passenger 2</h3>
-                            <div class="panel" style="margin-left:80px;text-align:justify">
-                            <div class="row">
-                                   <span>Name &nbsp :  ABC </span>
-                                    <span> &nbsp &nbsp |&nbsp Mobile :  +91-987654321</span>
-                            </div>
-                            <div class="row">
-                                   <span>Age : 21  </span>
-                                <span> &nbsp&nbsp | &nbsp&nbsp Gender : M</span>
-                            </div>
-                            </div>
+                    </div>
+                    <div id="pd">
+
                     </div>
 
 
                       <div class="">
 
-                            
-                            
-                            <div class="row"> 
-                                
-                                <div class="col-lg-5"> 
+
+
+                            <div class="row">
+
+                                <div class="col-lg-5">
                                     <h3>Tour Detail</h3>
                                 <table>
                                     <tbody>
@@ -103,13 +135,13 @@
                                             <td id="nP"></td>
 
                                         </tr>
-                                         
+
                                     </tbody>
-                                   
+
                                 </table>
-                                 
+
                                 <br />
-                                
+
                                 </div>
                                 <div class="v1"> </div>
 
@@ -131,21 +163,21 @@
                                             <td id="roomPrice"></td>
 
                                         </tr>
-                                         
+
                                     </tbody>
 
                                    </table>
-                                 
+
                                </div>
-                              
+
                                <h3>  <span> Grand Total: _________&#8377;</span></h3>
                             </div>
                             <span> </span>
                             <span></span>
                             </div>
-                   
 
-                    <button class="submit-btn btn" onclick="printContent()"> print</button> 
+
+                    <button class="submit-btn btn" onclick="printContent()"> print</button>
                 </div>
 
             </div>

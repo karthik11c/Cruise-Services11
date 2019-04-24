@@ -9,6 +9,9 @@
 	var numberOfRoomsSelected = 0;
  function preload()
 		{
+
+				 alert("cruiseName:<%= roomsData.roomTypes.length %>");
+			  sessionStorage.setItem("cruiseTitle","<%= roomsData.cruiseTitle %>");
 			  var selectedRoomTypes = [];
 				sessionStorage.setItem('np',0);
 				sessionStorage.setItem('total',0);
@@ -16,7 +19,6 @@
 				preld.style.display = 'none';
 				sessionStorage.removeItem("price");
         sessionStorage.removeItem("selectedRoomTypes");
-
 		}
 		function validate()
 		{
@@ -156,7 +158,7 @@
             <section>
 
 <!-- Root Tag -->
-<div class="col-md-12 container id="scrl" style="overflow-y:scroll;height:700px"" >
+<div class="col-md-12 container id="scrl" style="overflow-y:scroll;height:700px">
 	<!-- 1. Filter All Rooms   -->
                   <div class="booking-form col-lg-12 filter all">
 										<% for(var i=0 ; i < roomsData.roomTypes.length ; i++){ %>
@@ -209,7 +211,7 @@
       <div class="booking-form col-lg-12  filter FR">
 				<% for(var i=0; i < roomsData.roomTypes.length; i++){ %>
 					<% if(roomsData.roomTypes[i].roomtype == "family"){ %>
-                        <div class="row">
+                  <div class="row">
                     <div class="col-md-5 panel-body ">
                         <img src="<%= roomsData.roomTypes[i].roomsimg %>" class="img-thumbnail img-responsive" />
                     </div>
@@ -247,8 +249,8 @@
 
                       <button class="btn btn-primary col-md-4" onclick="orderFR();">ADD</button>
 														<script type="text/javascript">
-                               var selectedRoomTypes = [];
-                               var price;
+                              var selectedRoomTypes = [];
+                              var price;
 															function orderFR()
 															{
 
@@ -259,7 +261,7 @@
 																		sessionStorage.setItem("price",<%= roomsData.roomTypes[i].price %>);
 																		price = parseInt(sessionStorage.getItem("price"),10);
 																}
-																sessionStorage.setItem('total',price);
+																sessionStorage.setItem("price",price);
 																var found = 0;
 																var selectedRoomTypes = [];
 																if(sessionStorage.getItem("selectedRoomTypes")){
@@ -274,7 +276,7 @@
 																	  sessionStorage.setItem("selectedRoomTypes",JSON.stringify(selectedRoomTypes));
 																	}
 																}else{
-  																 sessionStorage.removeItem("selectedRoomTypes");
+  																 // sessionStorage.removeItem("selectedRoomTypes");
                                    selectedRoomTypes.push("family");
 														       sessionStorage.setItem("selectedRoomTypes",JSON.stringify(selectedRoomTypes));
   															}
@@ -296,7 +298,7 @@
 
 					</br>
 				</br>
-					
+
 																		 </div>
 											<hr>
 
@@ -384,7 +386,7 @@
 															sessionStorage.setItem("price",<%= roomsData.roomTypes[i].price %>);
 															price = parseInt(sessionStorage.getItem("price"),10);
 													}
-													sessionStorage.setItem('total',price);
+													sessionStorage.setItem("price",price);
 													var found = 0;
 													var selectedRoomTypes = [];
 													if(sessionStorage.getItem("selectedRoomTypes")){
@@ -404,7 +406,7 @@
 
 
 													}else{
-														 sessionStorage.removeItem("selectedRoomTypes");
+														 // sessionStorage.removeItem("selectedRoomTypes");
 														 selectedRoomTypes.push("luxury");
 														 sessionStorage.setItem("selectedRoomTypes",JSON.stringify(selectedRoomTypes));
 														 // alert("new Session created session with family value..");
@@ -424,7 +426,7 @@
 																			 <input type="button" style="background:#f84848;color:white;width:100px;" value="Cancel" onclick="removeRow(this)">
 		<br></br>
 	</br>
-					
+
 															 </div>
 								<hr>
 
@@ -497,7 +499,7 @@
 																						  sessionStorage.setItem("price",<%= roomsData.roomTypes[i].price %>);
                                               price = parseInt(sessionStorage.getItem("price"),10);
 																					}
-																					sessionStorage.setItem('total',price);
+																					sessionStorage.setItem("price",price);
 																					var found = 0;
 																					var selectedRoomTypes = [];
 																					if(sessionStorage.getItem("selectedRoomTypes")){
@@ -515,7 +517,7 @@
 																							// alert("found=0 so sessionstore");
 																						}
 																					}else{
-					  																 sessionStorage.removeItem("selectedRoomTypes");
+					  																 // sessionStorage.removeItem("selectedRoomTypes");
 					                                   selectedRoomTypes.push("owner");
 																			       sessionStorage.setItem("selectedRoomTypes",JSON.stringify(selectedRoomTypes));
 					                                   // alert("new Session created session with family value..");
@@ -533,7 +535,7 @@
 								 <input type="button" style="background:#f84848;color:white;width:100px;" value="Cancel" onclick="removeRow(this)">
 								 		<br></br>
 									</br>
-					
+
 								 															 </div>
 								 								<hr>
 
@@ -581,12 +583,12 @@
 
                         <li>Then choose the number of rooms and click on "Add" button</li>
                     </ul>
-										<input type="hidden" name="roomsData" value= "<%= JSON.stringify(roomsData); %>"/>
+
+										<input type="hidden" name="roomsData" value= "<%= JSON.stringify(roomsData) %>"/>
 
 										<div class="col" id="myId">
      						       <button type="submit" name="button" class="btn btn-primary" id="cb" onclick="validate();">Conform</button>
                     <div class="col" id="totala">
-											<input type="hidden" name="filteredData" value= "<%= JSON.stringify(filteredData); %>"/>
                     </div>
 										</div>
            </div>
